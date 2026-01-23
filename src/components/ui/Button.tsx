@@ -26,7 +26,7 @@ export default function Button({
   // Using the Tredin Refinery Bronze and Deep Petroleum colors
   const styles =
     variant === "primary"
-      ? "bg-[#92400E] text-white hover:bg-[#78350F]" 
+      ? "bg-[#92400E] text-black hover:bg-[#78350F]" 
       : "bg-transparent text-[#0F172A] ring-1 ring-[#64748B]/40 hover:ring-[#64748B]";
 
   const combinedClassName = `${base} ${styles} ${className}`;

@@ -43,6 +43,25 @@ export default function LeadershipGrid() {
         modalBody: "Pastor Edison leads Cityzens PTI, raising up disciples who are equipped to make a lasting impact. His focus is on intentional discipleship and developing leaders who will carry the gospel forward with conviction and power.",
       },
       {
+        key: "rachel",
+        name: "Pastor Rachel Adesi",
+        title: "Resident Pastor",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+        button: "About",
+        modalTitle: "Pastor Rachel Adesi",
+        modalBody: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+      {
+        key: "othuke",
+        name: "Pastor Othuke Adesi",
+        title: "Resident Pastor",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+        button: "About",
+        modalTitle: "Pastor Othuke Adesi",
+        modalBody: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+      
+      {
         key: "victor",
         name: "Pastor Victor Samuel",
         title: "Pastor, CityCenter",
@@ -51,6 +70,15 @@ export default function LeadershipGrid() {
         modalTitle: "Pastor Victor Samuel",
         modalBody: "Pastor Victor serves as the pastor of CityCenter, guiding teenagers in discovering their identity in Christ. His heart is to see young people live purposefully, grounded in faith and ready to impact their generation.",
       },
+     {
+        key: "mercy",
+        name: "Pastor Mercy Chuks",
+        title: "Pastor",
+        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
+        button: "About",
+        modalTitle: "Pastor Mercy Chuks",
+        modalBody: "Pastor Mercy leads LifeCity ministry, empowering young adults to walk in faith and fulfill their God-given purpose. His passion is to see this generation rise up as mighty men and women who know their identity in Christ.",
+      },
       {
         key: "axcel",
         name: "Pastor Axcel Chuks",
@@ -58,6 +86,24 @@ export default function LeadershipGrid() {
         image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
         button: "About",
         modalTitle: "Pastor Axcel Chuks",
+        modalBody: "Pastor Axcel leads LifeCity ministry, empowering young adults to walk in faith and fulfill their God-given purpose. His passion is to see this generation rise up as mighty men and women who know their identity in Christ.",
+      },
+         {
+        key: "sam",
+        name: "Pastor Sam Igurube",
+        title: "Pastor",
+        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
+        button: "About",
+        modalTitle: "Pastor Sam Igurube",
+        modalBody: "Pastor Axcel leads LifeCity ministry, empowering young adults to walk in faith and fulfill their God-given purpose. His passion is to see this generation rise up as mighty men and women who know their identity in Christ.",
+      },
+      {
+        key: "brave",
+        name: "Pastor Brave Iyomih",
+        title: "Pastor, LifeCity",
+        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80",
+        button: "About",
+        modalTitle: "Pastor Sam Iyomih",
         modalBody: "Pastor Axcel leads LifeCity ministry, empowering young adults to walk in faith and fulfill their God-given purpose. His passion is to see this generation rise up as mighty men and women who know their identity in Christ.",
       },
     ],
@@ -70,7 +116,7 @@ export default function LeadershipGrid() {
   return (
     <section className="w-full bg-white">
       <div className="mx-auto w-full max-w-[1200px] px-6 pb-20">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {leaders.map((l) => (
             <div key={l.key} className="group">
               <div className="relative overflow-hidden rounded-2xl mb-4 shadow-[0_8px_24px_rgba(0,0,0,0.12)] group-hover:shadow-[0_12px_32px_rgba(0,0,0,0.16)] transition-all duration-300">

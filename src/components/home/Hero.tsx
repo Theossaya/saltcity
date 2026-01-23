@@ -15,11 +15,11 @@ export default function Hero() {
 
           <div>
             <h1 className="text-5xl lg:text-7xl leading-tight font-black mb-6 tracking-tight">
-              WELCOME TO SALTCITY!
+              Become <br /> Fit For Use
             </h1>
 
             <p className="text-lg lg:text-xl text-black/75 leading-relaxed max-w-[540px] mb-8">
-SaltCity Church is a Bible-teaching church focused on Discipling Believers and Perfecting them for the Fulfillment of the Work of Ministry.
+GOD created you in Christ Jesus to join Him in His good work, and we are here to help you in doing so.
      </p>
 
             <div className="max-w-[540px]">
