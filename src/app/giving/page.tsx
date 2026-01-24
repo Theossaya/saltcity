@@ -61,7 +61,7 @@ export default function GivingPage() {
         <div className="relative mx-auto w-full max-w-[1200px] px-6 h-full flex items-center">
           <div className="max-w-3xl">
             <h1 className="text-5xl lg:text-6xl font-black leading-tight text-white mb-6">
-              Why Should The Believer Give?
+              Why Should <br /> The Believer Give?
             </h1>
             <p className="text-xl text-white/90 leading-relaxed">
               The primary purpose of giving is for raising disciples through the spread of the gospel.
@@ -91,7 +91,7 @@ export default function GivingPage() {
           <div className="grid lg:grid-cols-[300px_1fr] gap-12 items-start max-w-5xl mx-auto">
             <div className="aspect-square rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.15)]">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+                src="images/PASTOR.jpg"
                 alt="Pastor Tobore David"
                 className="w-full h-full object-cover"
               />

@@ -1,60 +1,56 @@
 import Container from "@/components/ui/Container";
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaTiktok,
   FaYoutube,
-  FaLinkedinIn,
+  FaInstagram,
+  FaSpotify,
+  FaTelegram,
 } from "react-icons/fa";
+import { SiMixcloud } from "react-icons/si";
 
+// 1. Refactored to objects to allow custom hrefs
 const FOOTER_LINKS = [
-  "Watch",
-  "Locations",
-  "Give",
-  "Tools",
-  "For Churches",
-  "Careers",
-  "Shop",
-  "Contact Us",
+  { label: "Watch", href: "https://youtube.com/@saltcitycentral" },
+  { label: "Locations", href: "/locations" },
+  { label: "Give", href: "/give" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const LEGAL_LINKS = [
   "Privacy Policy",
   "Terms of Use",
-  "Vulnerability Disclosure Program",
-  "Cookie Preferences",
 ];
 
 const SOCIALS = [
-  { icon: FaFacebookF, label: "Facebook", href: "#" },
-  { icon: FaInstagram, label: "Instagram", href: "#" },
-  { icon: FaTiktok, label: "TikTok", href: "#" },
-  { icon: FaYoutube, label: "YouTube", href: "#" },
-  { icon: FaLinkedinIn, label: "LinkedIn", href: "#" },
+  { icon: FaYoutube, label: "YouTube", href: "https://youtube.com/@saltcitycentral" },
+  { icon: FaTelegram, label: "Telegram", href: "https://t.me/mysaltcity" },
+  { icon: SiMixcloud, label: "Mixlr", href: "https://mixlr.com/saltcitycentral" },
+  { icon: FaInstagram, label: "Instagram", href: "https://instagram.com/saltcitycentral" },
+  { icon: FaSpotify, label: "Spotify", href: "https://open.spotify.com/user/saltcitycentral" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-white">
+    <footer className="bg-white border-t border-black/5">
       <Container>
         <div className="py-14 grid gap-10 lg:grid-cols-2">
           {/* LEFT */}
           <div className="space-y-6">
             <p className="text-sm text-black/70">
               Attend{" "}
-              <a href="#" className="text-sky-600 hover:underline">
+              {/* Updated this inline link as well to match your request */}
+              <a href="https://youtube.com/@saltcitycentral" target="_blank" rel="noopener noreferrer" className="text-black font-semibold hover:underline">
                 SaltCity Online
               </a>{" "}
               or a{" "}
-              <a href="#" className="text-sky-600 hover:underline">
+              <a href="/locations" className="text-black font-semibold hover:underline">
                 SaltCity location
               </a>.
             </p>
 
-            <div className="flex flex-wrap gap-x-2 text-sm text-sky-600">
+            <div className="flex flex-wrap gap-x-2 text-sm text-black/60">
               {LEGAL_LINKS.map((item, i) => (
                 <span key={item} className="flex items-center">
-                  <a href="#" className="hover:underline">
+                  <a href="#" className="hover:underline hover:text-black">
                     {item}
                   </a>
                   {i < LEGAL_LINKS.length - 1 && (
@@ -74,11 +70,14 @@ export default function Footer() {
             <nav className="flex flex-wrap gap-x-6 gap-y-3 justify-start lg:justify-end">
               {FOOTER_LINKS.map((link) => (
                 <a
-                  key={link}
-                  href="#"
-                  className="text-sm text-sky-600 hover:underline"
+                  key={link.label}
+                  href={link.href}
+                  // Added target="_blank" logic if it's an external link
+                  target={link.href.startsWith('http') ? "_blank" : "_self"}
+                  rel={link.href.startsWith('http') ? "noopener noreferrer" : ""}
+                  className="text-sm text-black/70 hover:text-black hover:underline"
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
             </nav>
@@ -88,10 +87,12 @@ export default function Footer() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
-                  className="h-10 w-10 rounded-full bg-black text-white grid place-items-center hover:bg-black/90"
+                  className="h-10 w-10 rounded-full bg-black text-white grid place-items-center hover:bg-black/90 transition-colors"
                 >
-                  <Icon size={16} />
+                  <Icon size={18} />
                 </a>
               ))}
             </div>

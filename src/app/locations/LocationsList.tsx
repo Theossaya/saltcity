@@ -60,13 +60,14 @@ export default function LocationsList({ items, selectedId, onSelect }: Props) {
               </div>
               <div className="mt-1 text-xs text-black/60">{o.serviceTimes}</div>
             </div>
+            
             <a
               href={o.ctaUrl ?? "#"}
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-black/15 px-3 py-2 text-xs font-medium hover:border-black/30"
             >
-              Watch online
+              Join WhatsApp
             </a>
           </div>
         ))}
