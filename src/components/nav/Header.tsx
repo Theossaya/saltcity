@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import Container from "@/components/ui/Container";
 import MenuOverlay from "@/components/nav/MenuOverlay";
 
+// Updated the href for "Watch Online"
 const MAIN_LINKS = [
-  { label: "Watch Online", href: "/watch" },
+  { label: "Watch Online", href: "https://www.youtube.com/@saltcitycentral" },
   { label: "Media", href: "/media" },
   { label: "Locations", href: "/locations" },
   { label: "Give", href: "/giving" },
@@ -61,16 +62,23 @@ export default function Header() {
               </Link>
 
               <ul className="hidden lg:flex items-center gap-6">
-                {MAIN_LINKS.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="text-xs font-semibold uppercase tracking-wide text-black/50 hover:text-black transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                {MAIN_LINKS.map((item) => {
+                  // Check if link is external to apply target="_blank"
+                  const isExternal = item.href.startsWith("http");
+                  
+                  return (
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
+                        className="text-xs font-semibold uppercase tracking-wide text-black/50 hover:text-black transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
