@@ -2,7 +2,7 @@ import Container from "@/components/ui/Container";
 
 const NEXT_STEPS = [
   {
-    title: "Sign up for School of Discipleship",
+    title: "Sign up for Discipleship",
     desc: "Learn the foundations of faith and grow in your walk with Christ.",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
