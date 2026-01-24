@@ -12,7 +12,7 @@ const MAIN_LINKS = [
   { label: "Resources", href: "/resources" },
   { label: "Give", href: "/giving" },
   { label: "Who We Are", href: "/who-we-are" },
-  { label: "Songs", href: "/media/songs" }, // Bonus: You can also link songs directly
+  { label: "Songs", href: "/songs" }, // Bonus: You can also link songs directly
 ];
 
 export default function Header() {

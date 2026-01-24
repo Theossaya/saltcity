@@ -20,7 +20,7 @@ export const locations: LocationItem[] = [
     id: "saltcity-online",
     name: "SaltCity Online",
     type: "online",
-    ctaUrl: "https://chat.whatsapp.com/your-group-invite-link",
+    ctaUrl: "https://chat.whatsapp.com/BzDAhudAQ3oHblsdtPgwIV?mode=gi_t",
     serviceTimes: "Sundays 9:00 AM (WAT)",
   },
   {
