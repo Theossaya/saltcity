@@ -5,7 +5,7 @@ import Link from "next/link";
 const SONGS = [
   {
     title: "Rest All Over (Live)",
-    thumbnail: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80",
+    thumbnail: "images/rest_all_over.jpeg",
     platforms: {
       youtube: "#",
       youtubeMusic: "#",
