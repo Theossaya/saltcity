@@ -13,29 +13,9 @@ const SONGS = [
       appleMusic: "#",
     }
   },
-  {
-    title: "Holy Ghost and Fire (Live)",
-    thumbnail: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=800&q=80",
-    platforms: {
-      youtube: "#",
-      youtubeMusic: "#",
-      spotify: "#",
-      appleMusic: "#",
-    }
-  },
-  {
-    title: "One Encounter (Live)",
-    thumbnail: "https://images.unsplash.com/photo-1485579149621-3123dd979885?auto=format&fit=crop&w=800&q=80",
-    platforms: {
-      youtube: "#",
-      youtubeMusic: "#",
-      spotify: "#",
-      appleMusic: "#",
-    }
-  },
-  {
-    title: "Jesus Loves You (Live)",
-    thumbnail: "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80",
+   {
+    title: "Make Me Wise (Live)",
+    thumbnail: "images/make-me-wise.jpeg",
     platforms: {
       youtube: "#",
       youtubeMusic: "#",
@@ -45,25 +25,96 @@ const SONGS = [
   },
   {
     title: "Surrender (Live)",
-    thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80",
-    platforms: {
-      youtube: "#",
-      youtubeMusic: "#",
-      spotify: "#",
-      appleMusic: "#",
-    }
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Let Your Presence Fall (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Invade Us (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Thirsty Lord (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "One Encounter (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Living Water (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Running After You (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Jesus Loves You (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
   },
   {
     title: "Apple of His Eyes (Live)",
-    thumbnail: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
-    platforms: {
-      youtube: "#",
-      youtubeMusic: "#",
-      spotify: "#",
-      appleMusic: "#",
-    }
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
   },
+  {
+    title: "All Yours (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Closer (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Altar (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Holy Ghost and Fire (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Miracles (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "All the Way (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Jesus (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "Matchless One (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  },
+  {
+    title: "One Mic (Live)",
+    thumbnail: "images/surrender.jpeg",
+    platforms: { youtube: "#", youtubeMusic: "#", spotify: "#", appleMusic: "#" }
+  }
 ];
+
 
 const PLATFORMS = [
   {
