@@ -6,6 +6,8 @@ import {
   FaTelegram,
 } from "react-icons/fa";
 import { SiMixcloud } from "react-icons/si";
+import { FaXTwitter } from "react-icons/fa6";
+
 
 // 1. Refactored to objects to allow custom hrefs
 const FOOTER_LINKS = [
@@ -23,10 +25,11 @@ const LEGAL_LINKS = [
 const SOCIALS = [
   { icon: FaYoutube, label: "YouTube", href: "https://youtube.com/@saltcitycentral" },
   { icon: FaTelegram, label: "Telegram", href: "https://t.me/mysaltcity" },
-  { icon: SiMixcloud, label: "Mixlr", href: "https://mixlr.com/saltcitycentral" },
+  { icon: FaXTwitter, label: "X", href: "https://x.com/saltcitycentral" },
   { icon: FaInstagram, label: "Instagram", href: "https://instagram.com/saltcitycentral" },
   { icon: FaSpotify, label: "Spotify", href: "https://open.spotify.com/user/mysaltcity" },
 ];
+
 
 export default function Footer() {
   return (
