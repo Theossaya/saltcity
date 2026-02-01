@@ -4,11 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Modal from "@/components/ui/Modal";
+import { FilloutPopupEmbed } from "@fillout/react";
 
 type ActiveModal = "discipleship" | "company" | null;
 
 export default function NextSteps() {
   const [activeModal, setActiveModal] = useState<ActiveModal>(null);
+  const [firstTimeOpen, setFirstTimeOpen] = useState(false);
   const [inView, setInView] = useState(false);
 
   // Entrance animation on scroll (no libs)
@@ -35,7 +37,7 @@ export default function NextSteps() {
       {
         title: "First Time Here?",
         desc: "Let us know you came — we’ll help you settle in and connect quickly.",
-        href: "/first-time",
+        action: () => setFirstTimeOpen(true),
         icon: (
           <svg
             className="w-8 h-8"
@@ -54,7 +56,7 @@ export default function NextSteps() {
       {
         title: "Sign up for Discipleship",
         desc: "Learn the foundations of faith and grow in your walk with Christ.",
-        action: () => setActiveModal("discipleship" as const),
+        action: () => setActiveModal("discipleship"),
         icon: (
           <svg
             className="w-8 h-8"
@@ -71,7 +73,7 @@ export default function NextSteps() {
       {
         title: "Join a Company",
         desc: "Do life with a community of believers close to you.",
-        action: () => setActiveModal("company" as const),
+        action: () => setActiveModal("company"),
         icon: (
           <svg
             className="w-8 h-8"
@@ -140,18 +142,15 @@ export default function NextSteps() {
                       transitionDelay: inView ? `${idx * 70}ms` : "0ms",
                     }}
                   >
-                    {/* subtle shine on hover */}
                     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
                       <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-black/0 group-hover:bg-black/5 blur-2xl transition-colors duration-300" />
                       <div className="absolute -right-20 -bottom-20 h-40 w-40 rounded-full bg-black/0 group-hover:bg-black/5 blur-2xl transition-colors duration-300" />
                     </div>
 
-                    {/* icon (aligned) */}
                     <div className="w-16 h-16 rounded-xl bg-black text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                       {step.icon}
                     </div>
 
-                    {/* title + desc */}
                     <h3 className="text-xl font-bold mb-3 text-black leading-snug min-h-[3.2rem]">
                       {step.title}
                     </h3>
@@ -159,7 +158,6 @@ export default function NextSteps() {
                       {step.desc}
                     </p>
 
-                    {/* arrow reveal */}
                     <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-black/70">
                       <span className="transition-colors duration-300 group-hover:text-black">
                         Continue
@@ -180,9 +178,13 @@ export default function NextSteps() {
                       <div
                         className={[
                           "transition-all duration-700",
-                          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+                          inView
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-6",
                         ].join(" ")}
-                        style={{ transitionDelay: inView ? `${idx * 70}ms` : "0ms" }}
+                        style={{
+                          transitionDelay: inView ? `${idx * 70}ms` : "0ms",
+                        }}
                       >
                         {CardInner}
                       </div>
@@ -190,7 +192,7 @@ export default function NextSteps() {
                   );
                 }
 
-                // Button card (modal)
+                // Button card (modal/popup)
                 return (
                   <button
                     key={step.title}
@@ -201,9 +203,13 @@ export default function NextSteps() {
                     <div
                       className={[
                         "transition-all duration-700",
-                        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+                        inView
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-6",
                       ].join(" ")}
-                      style={{ transitionDelay: inView ? `${idx * 70}ms` : "0ms" }}
+                      style={{
+                        transitionDelay: inView ? `${idx * 70}ms` : "0ms",
+                      }}
                     >
                       {CardInner}
                     </div>
@@ -214,6 +220,13 @@ export default function NextSteps() {
           </div>
         </Container>
       </section>
+
+      {/* ✅ Fillout popup for First Time Here */}
+      <FilloutPopupEmbed
+        filloutId="vK93KWYSAtus"
+        isOpen={firstTimeOpen}
+        onClose={() => setFirstTimeOpen(false)}
+      />
 
       {/* Discipleship Modal */}
       <Modal
