@@ -11,14 +11,14 @@ const CONTACT_METHODS = [
   {
     icon: <Phone size={28} />,
     title: "Call Us",
-    details: ["+234 801 234 5678", "Mon-Fri, 9AM-5PM WAT"],
-    href: "tel:+2348012345678",
+    details: ["+234 803 059 7015", "Mon-Fri, 9AM-5PM WAT"],
+    href: "tel:+2348030597015",
   },
   {
     icon: <MessageCircle size={28} />,
     title: "WhatsApp",
-    details: ["+234 801 234 5678", "Quick responses"],
-    href: "https://wa.me/2348012345678",
+    details: ["+234 803 059 7015", "Quick responses"],
+    href: "https://wa.me/2348030597015",
   },
   {
     icon: <MapPin size={28} />,

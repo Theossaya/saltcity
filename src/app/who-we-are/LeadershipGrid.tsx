@@ -49,7 +49,7 @@ export default function LeadershipGrid() {
         button: "About",
         modalTitle: "Pastor Oyinvbi Iboyi",
         modalBody:
-          "Pastor Oyinvbi Iboyi serves as the Pastor of the Cityzens PTI campus expression, the university outreach of City Church at the Petroleum Training Institute, Warri. He is committed to raising young believers equipped to discover their place and path in GOD’s purpose.",
+          "Pastor Dennis is the Coordinator for our company groups, which is one of the accountability structures of SaltCity Church.",
         focusY: 12,
       },
       {
@@ -138,7 +138,7 @@ export default function LeadershipGrid() {
         button: "About",
         modalTitle: "Pastor Stephanie Innocent",
         modalBody:
-          "Pastor Brave Iyomih serves as a Pastor at LifeCity. He contributes to the ministry through his expression of worship and exhortation, strengthening the spiritual life of the church.",
+          "PIT Stephanie prayerfully walks them through the journey of fruitfulness from conception to deliver for pregnant women and women believing GOD for children.",
         focusY: 14,
       },
       {
@@ -160,7 +160,7 @@ export default function LeadershipGrid() {
         button: "About",
         modalTitle: "Pastor Immanuel Oluwanifise",
         modalBody:
-          "Pastor Immanuel Oluwanifise serves as a Pastor at LifeCity. He contributes to the ministry through his expression of worship and exhortation, strengthening the spiritual life of the church.",
+          "PIT Immanuel is the Pastor for the Cityzens expression in FUPRE, practically showing young undergraduates how to have CHRIST as their focus and EXAMPLE.",
         focusY: 12,
       },
     ],

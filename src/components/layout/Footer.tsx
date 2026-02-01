@@ -14,7 +14,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const FOOTER_LINKS = [
   { label: "Watch", href: "https://youtube.com/@saltcitycentral" },
   { label: "Locations", href: "/locations" },
-  { label: "Give", href: "/give" },
+  { label: "Give", href: "/giving" },
   { label: "Shop", href: "/shop" }, // Added this line
   { label: "Contact Us", href: "/contact" },
 ];
