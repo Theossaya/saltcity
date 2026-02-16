@@ -20,64 +20,64 @@ type BlogPost = {
 const BLOG_POSTS: BlogPost[] = [
   {
     id: "1",
-    title: "Walking in Faith: Understanding God's Purpose for Your Life",
-    excerpt: "Discover how to align your daily walk with God's divine purpose and calling for your life.",
-    author: "Pastor Emmanuel",
-    date: "2026-02-05",
-    readTime: "8 min read",
-    category: "Faith & Purpose",
-    image: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=800&auto=format&fit=crop",
+    title: "Living Above Fear: Walking Boldly in Christ",
+    excerpt: "Pastor Tobore teaches how to silence fear, stand firm in faith, and live with spiritual confidence in uncertain times.",
+    author: "Pastor Tobore",
+    date: "2026-02-07",
+    readTime: "9 min read",
+    category: "Faith & Courage",
+    image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&auto=format&fit=crop",
     featured: true,
   },
   {
     id: "2",
-    title: "The Power of Prayer in Building Strong Families",
-    excerpt: "Practical insights on establishing a prayer culture that transforms your home and relationships.",
-    author: "Sis. Grace",
-    date: "2026-02-03",
-    readTime: "6 min read",
-    category: "Family",
-    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&auto=format&fit=crop",
+    title: "Grace That Sustains: Strength for the Hidden Battles",
+    excerpt: "Pastor Edison shares how God’s grace carries believers through seasons no one else sees.",
+    author: "Pastor Edison",
+    date: "2026-02-05",
+    readTime: "7 min read",
+    category: "Spiritual Growth",
+    image: "https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800&auto=format&fit=crop",
   },
   {
     id: "3",
-    title: "Navigating Life's Challenges with Biblical Wisdom",
-    excerpt: "How to apply scriptural principles to overcome obstacles and emerge victorious.",
-    author: "Bro. David",
-    date: "2026-02-01",
-    readTime: "10 min read",
-    category: "Spiritual Growth",
-    image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800&auto=format&fit=crop",
+    title: "When God Says Move: Obedience and Divine Timing",
+    excerpt: "Pastor Seun explores the power of immediate obedience and how destiny often waits on one decisive step.",
+    author: "Pastor Seun",
+    date: "2026-02-03",
+    readTime: "8 min read",
+    category: "Purpose",
+    image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800&auto=format&fit=crop",
   },
   {
     id: "4",
-    title: "Youth & Purpose: Finding Your Place in God's Kingdom",
-    excerpt: "A message for the young generation on discovering and fulfilling their divine assignment.",
-    author: "Pastor Sarah",
-    date: "2026-01-30",
-    readTime: "7 min read",
-    category: "Youth",
-    image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&auto=format&fit=crop",
+    title: "Identity in Christ: Breaking Free from Labels",
+    excerpt: "Pastor Karis teaches how to reject false identities and embrace who God says you are.",
+    author: "Pastor Karis",
+    date: "2026-02-01",
+    readTime: "6 min read",
+    category: "Identity",
+    image: "https://images.unsplash.com/photo-1485217988980-11786ced9454?w=800&auto=format&fit=crop",
   },
   {
     id: "5",
-    title: "Building a Culture of Excellence in Ministry",
-    excerpt: "Keys to developing and maintaining standards of excellence in all areas of church service.",
-    author: "Elder Michael",
-    date: "2026-01-28",
-    readTime: "9 min read",
-    category: "Leadership",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop",
+    title: "The Fire of Revival: Stirring Hunger for God Again",
+    excerpt: "Pastor Racheal calls the church back to passionate devotion and a fresh encounter with the Holy Spirit.",
+    author: "Pastor Racheal",
+    date: "2026-01-29",
+    readTime: "10 min read",
+    category: "Revival",
+    image: "/images/capital.jpg",
   },
   {
     id: "6",
-    title: "The Role of Worship in Personal Transformation",
-    excerpt: "Understanding how genuine worship reshapes our character and deepens our relationship with God.",
-    author: "Bro. John",
-    date: "2026-01-25",
+    title: "Serving with Excellence: Faithfulness in Small Things",
+    excerpt: "Pastor Tobore reminds believers that greatness in ministry begins with consistency in the unseen places.",
+    author: "Pastor Tobore",
+    date: "2026-01-27",
     readTime: "5 min read",
-    category: "Worship",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop",
+    category: "Leadership",
+    image: "images/listen.jpg",
   },
 ];
 
@@ -145,13 +145,15 @@ export default function BlogPage() {
           </div>
         </Container>
       </section>
-
-      {/* Search & Filter Bar */}
+{/* Search & Filter Bar */}
       <section className="sticky top-[73px] z-30 bg-white/95 backdrop-blur-md border-b border-black/5 shadow-sm">
         <Container>
-          <div className="py-6 flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-            {/* Search */}
-            <div className="relative flex-1 max-w-md">
+          {/* Use flex-col for mobile, row for desktop. 
+              Items-stretch on mobile ensures the search bar takes full width. */}
+          <div className="py-4 lg:py-6 flex flex-col lg:flex-row gap-4 lg:items-center justify-between">
+            
+            {/* Search - Max width only applies to desktop */}
+            <div className="relative w-full lg:max-w-md">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-black/40" />
               <input
                 type="text"
@@ -162,22 +164,27 @@ export default function BlogPage() {
               />
             </div>
 
-            {/* Categories */}
-            <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 lg:pb-0">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={[
-                    "px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300",
-                    selectedCategory === cat
-                      ? "bg-black text-white shadow-lg"
-                      : "bg-black/5 text-black/70 hover:bg-black/10",
-                  ].join(" ")}
-                >
-                  {cat}
-                </button>
-              ))}
+            {/* Categories - The "Scroll Wrapper" */}
+            <div className="relative w-full lg:w-auto">
+              <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0">
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={[
+                      "px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300 flex-shrink-0",
+                      selectedCategory === cat
+                        ? "bg-black text-white shadow-lg"
+                        : "bg-black/5 text-black/70 hover:bg-black/10",
+                    ].join(" ")}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+              
+              {/* Optional: Visual hint that there's more to scroll on mobile */}
+              <div className="absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-white/80 to-transparent pointer-events-none lg:hidden" />
             </div>
           </div>
         </Container>
