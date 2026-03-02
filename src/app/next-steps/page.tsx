@@ -5,7 +5,16 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Modal from "@/components/ui/Modal";
 
-type ActiveModal = "serve" | "counseling" | "company" | "discipleship" | null;
+type ActiveModal =
+  | "membership"
+  | "discipleship"
+  | "company"
+  | "serve"
+  | "counseling"
+  | "babyDedication"
+  | "thanksgiving"
+  | "premarital"
+  | null;
 
 // Tiny helper
 function cx(...classes: (string | false | undefined | null)[]) {
@@ -13,6 +22,23 @@ function cx(...classes: (string | false | undefined | null)[]) {
 }
 
 const STEPS = [
+
+    {
+    title: "Membership Form",
+    desc: "Make it official. Join the church family and get properly connected.",
+    kind: "modal" as const,
+    modalKey: "membership" as const,
+    cta: "Become a member",
+    color: "from-neutral-900 to-neutral-950",
+    iconBg: "bg-neutral-900/10",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    ),
+  },
+
   {
     title: "Sign up for discipleship",
     desc: "Learn what it means and register for the next discipleship class.",
@@ -62,6 +88,58 @@ const STEPS = [
       </svg>
     ),
   },
+
+  {
+    title: "Baby Dedication",
+    desc: "Register your child for the next dedication service.",
+    kind: "modal" as const,
+    modalKey: "babyDedication" as const,
+    cta: "Apply for dedication",
+    color: "from-pink-900 to-pink-950",
+    iconBg: "bg-pink-900/10",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M8 14a4 4 0 0 0 8 0" />
+        <path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z" />
+      </svg>
+    ),
+  },
+
+  {
+    title: "Thanksgiving Application",
+    desc: "Share your testimony and register for a thanksgiving slot.",
+    kind: "modal" as const,
+    modalKey: "thanksgiving" as const,
+    cta: "Apply to share",
+    color: "from-yellow-900 to-yellow-950",
+    iconBg: "bg-yellow-900/10",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 21s7-4.35 7-10a4 4 0 0 0-7-2 4 4 0 0 0-7 2c0 5.65 7 10 7 10z" />
+      </svg>
+    ),
+  },
+
+  {
+    title: "Premarital Classes",
+    desc: "Register for premarital counseling and class schedule.",
+    kind: "modal" as const,
+    modalKey: "premarital" as const,
+    cta: "Register now",
+    color: "from-indigo-900 to-indigo-950",
+    iconBg: "bg-indigo-900/10",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M16 4h4v4" />
+        <path d="M20 4l-6 6" />
+        <path d="M8 20H4v-4" />
+        <path d="M4 20l6-6" />
+        <circle cx="9" cy="9" r="3" />
+        <circle cx="15" cy="15" r="3" />
+      </svg>
+    ),
+  },
+
   {
     title: "Give Online",
     desc: "Support the ministry through generous giving.",
@@ -305,7 +383,7 @@ export default function NextStepsPage() {
       <Modal
         open={active === "discipleship"}
         title="Sign up for Discipleship"
-        description="Fill this and we'll reach out with the next steps."
+        description="Classes hold every Sunday at 7am at SaltCity Central. Fill this and we'll reach out with the next steps."
         onClose={() => setActive(null)}
         footer={<div className="text-xs text-black/60">By submitting, you agree we may contact you about discipleship.</div>}
       >
@@ -340,6 +418,46 @@ export default function NextStepsPage() {
         footer={<div className="text-xs text-black/60">All requests are kept confidential.</div>}
       >
         <CounselingForm onDone={() => setActive(null)} />
+      </Modal>
+      
+      <Modal
+        open={active === "membership"}
+        title="Membership Form"
+        description="Fill this and we'll help you get properly connected."
+        onClose={() => setActive(null)}
+        footer={<div className="text-xs text-black/60">By submitting, you agree we may contact you about membership.</div>}
+      >
+        <MembershipForm onDone={() => setActive(null)} />
+      </Modal>
+
+      <Modal
+        open={active === "babyDedication"}
+        title="Baby Dedication"
+        description="Register for the next baby dedication service."
+        onClose={() => setActive(null)}
+        footer={<div className="text-xs text-black/60">We'll confirm the date and required details.</div>}
+      >
+        <BabyDedicationForm onDone={() => setActive(null)} />
+      </Modal>
+
+      <Modal
+        open={active === "thanksgiving"}
+        title="Thanksgiving Application"
+        description="Share your testimony and request a thanksgiving slot."
+        onClose={() => setActive(null)}
+        footer={<div className="text-xs text-black/60">We'll review and get back to you.</div>}
+      >
+        <ThanksgivingForm onDone={() => setActive(null)} />
+      </Modal>
+
+      <Modal
+        open={active === "premarital"}
+        title="Premarital Classes"
+        description="Register for premarital counseling and class schedule."
+        onClose={() => setActive(null)}
+        footer={<div className="text-xs text-black/60">We'll contact you with the next available class dates.</div>}
+      >
+        <PremaritalForm onDone={() => setActive(null)} />
       </Modal>
     </>
   );
@@ -448,6 +566,9 @@ async function submitToWebApp(payload: Record<string, any>) {
 
 /* ---------- Form Components ---------- */
 
+// ─── Discipleship ─────────────────────────────────────────────────────────────
+// Classes: every Sunday at 7am, SaltCity Central. No location or availability fields needed.
+
 function DiscipleshipForm({ onDone }: { onDone: () => void }) {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
@@ -455,8 +576,6 @@ function DiscipleshipForm({ onDone }: { onDone: () => void }) {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [location, setLocation] = useState("");
-  const [availability, setAvailability] = useState("");
   const [notes, setNotes] = useState("");
   const [hp, setHp] = useState("");
 
@@ -473,14 +592,12 @@ function DiscipleshipForm({ onDone }: { onDone: () => void }) {
             fullName,
             phone,
             email,
-            location,
-            availability,
             notes,
             hp,
           });
 
           setMsg("Submitted. We'll reach out soon.");
-          setFullName(""); setPhone(""); setEmail(""); setLocation(""); setAvailability(""); setNotes(""); setHp("");
+          setFullName(""); setPhone(""); setEmail(""); setNotes(""); setHp("");
           setTimeout(() => onDone(), 700);
         } catch (err: any) {
           setMsg(err?.message || "Something went wrong.");
@@ -510,25 +627,6 @@ function DiscipleshipForm({ onDone }: { onDone: () => void }) {
         <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@email.com" />
       </Field>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Preferred Location">
-          <Select value={location} onChange={(e) => setLocation(e.target.value)} required>
-            <option value="" disabled>Select one</option>
-            <option>SaltCity Central</option>
-            <option>PTI Campus</option>
-            <option>Online</option>
-          </Select>
-        </Field>
-        <Field label="Availability">
-          <Select value={availability} onChange={(e) => setAvailability(e.target.value)} required>
-            <option value="" disabled>Select one</option>
-            <option>Weekdays</option>
-            <option>Weekends</option>
-            <option>Anytime</option>
-          </Select>
-        </Field>
-      </div>
-
       <Field label="Anything we should know? (optional)">
         <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} placeholder="Tell us briefly..." />
       </Field>
@@ -539,6 +637,8 @@ function DiscipleshipForm({ onDone }: { onDone: () => void }) {
     </form>
   );
 }
+
+// ─── Company ──────────────────────────────────────────────────────────────────
 
 function CompanyForm({ onDone }: { onDone: () => void }) {
   const [loading, setLoading] = useState(false);
@@ -629,6 +729,9 @@ function CompanyForm({ onDone }: { onDone: () => void }) {
   );
 }
 
+// ─── Serve ────────────────────────────────────────────────────────────────────
+// Removed Prayer Team. Added Venue Management, Hospitality, and Security.
+
 function ServeForm({ onDone }: { onDone: () => void }) {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
@@ -689,14 +792,16 @@ function ServeForm({ onDone }: { onDone: () => void }) {
         <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@email.com" />
       </Field>
 
-      <Field label="Preferred Team (optional)">
+      <Field label="Preferred Department (optional)">
         <Select value={preferredTeam} onChange={(e) => setPreferredTeam(e.target.value)}>
           <option value="">Select one</option>
-          <option>Media/Tech</option>
+          <option>Media / Tech</option>
           <option>Ushering</option>
           <option>Children's Ministry</option>
           <option>Worship Team</option>
-          <option>Prayer Team</option>
+          <option>Venue Management</option>
+          <option>Hospitality</option>
+          <option>Security</option>
           <option>Other</option>
         </Select>
       </Field>
@@ -711,6 +816,8 @@ function ServeForm({ onDone }: { onDone: () => void }) {
     </form>
   );
 }
+
+// ─── Counseling ───────────────────────────────────────────────────────────────
 
 function CounselingForm({ onDone }: { onDone: () => void }) {
   const [loading, setLoading] = useState(false);
@@ -782,6 +889,406 @@ function CounselingForm({ onDone }: { onDone: () => void }) {
 
       {msg && <div className="text-sm font-semibold text-black/70">{msg}</div>}
 
+      <SubmitRow onDone={onDone} loading={loading} />
+    </form>
+  );
+}
+
+// ─── Membership ───────────────────────────────────────────────────────────────
+
+function MembershipForm({ onDone }: { onDone: () => void }) {
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState<string | null>(null);
+
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState("");
+  const [bornAgain, setBornAgain] = useState("");
+  const [notes, setNotes] = useState("");
+  const [hp, setHp] = useState("");
+
+  return (
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
+        setMsg(null);
+        setLoading(true);
+
+        try {
+          await submitToWebApp({
+            formType: "membership",
+            fullName,
+            phone,
+            email,
+            address,
+            maritalStatus,
+            bornAgain,
+            notes,
+            hp,
+          });
+
+          setMsg("Submitted. We'll reach out soon.");
+          setFullName(""); setPhone(""); setEmail(""); setAddress("");
+          setMaritalStatus(""); setBornAgain(""); setNotes(""); setHp("");
+          setTimeout(() => onDone(), 700);
+        } catch (err: any) {
+          setMsg(err?.message || "Something went wrong.");
+        } finally {
+          setLoading(false);
+        }
+      }}
+      className="grid gap-5"
+    >
+      <div className="hidden">
+        <label>
+          Leave this empty:
+          <input value={hp} onChange={(e) => setHp(e.target.value)} />
+        </label>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Full Name">
+          <Input value={fullName} onChange={(e) => setFullName(e.target.value)} required placeholder="Your name" />
+        </Field>
+        <Field label="Phone Number">
+          <Input value={phone} onChange={(e) => setPhone(e.target.value)} required placeholder="+234..." />
+        </Field>
+      </div>
+
+      <Field label="Email (optional)">
+        <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@email.com" />
+      </Field>
+
+      <Field label="Marital Status (optional)">
+        <Select value={maritalStatus} onChange={(e) => setMaritalStatus(e.target.value)}>
+          <option value="">Select one</option>
+          <option>Single</option>
+          <option>Married</option>
+          <option>Engaged</option>
+          <option>Other</option>
+        </Select>
+      </Field>
+
+      <Field label="Home Address (optional)">
+        <Input value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Area / street (optional)" />
+      </Field>
+
+      <Field label="Are you born again? (optional)">
+        <Select value={bornAgain} onChange={(e) => setBornAgain(e.target.value)}>
+          <option value="">Select one</option>
+          <option>Yes</option>
+          <option>No</option>
+          <option>Not sure</option>
+        </Select>
+      </Field>
+
+      <Field label="Anything else we should know? (optional)">
+        <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} placeholder="Tell us briefly..." />
+      </Field>
+
+      {msg && <div className="text-sm font-semibold text-black/70">{msg}</div>}
+      <SubmitRow onDone={onDone} loading={loading} />
+    </form>
+  );
+}
+
+// ─── Baby Dedication ──────────────────────────────────────────────────────────
+// Removed preferred location field.
+
+function BabyDedicationForm({ onDone }: { onDone: () => void }) {
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState<string | null>(null);
+
+  const [parentName, setParentName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [childName, setChildName] = useState("");
+  const [childDob, setChildDob] = useState("");
+  const [notes, setNotes] = useState("");
+  const [hp, setHp] = useState("");
+
+  return (
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
+        setMsg(null);
+        setLoading(true);
+
+        try {
+          await submitToWebApp({
+            formType: "baby_dedication",
+            parentName,
+            phone,
+            email,
+            childName,
+            childDob,
+            notes,
+            hp,
+          });
+
+          setMsg("Submitted. We'll reach out soon.");
+          setParentName(""); setPhone(""); setEmail(""); setChildName(""); setChildDob("");
+          setNotes(""); setHp("");
+          setTimeout(() => onDone(), 700);
+        } catch (err: any) {
+          setMsg(err?.message || "Something went wrong.");
+        } finally {
+          setLoading(false);
+        }
+      }}
+      className="grid gap-5"
+    >
+      <div className="hidden">
+        <label>
+          Leave this empty:
+          <input value={hp} onChange={(e) => setHp(e.target.value)} />
+        </label>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Parent / Guardian Name">
+          <Input value={parentName} onChange={(e) => setParentName(e.target.value)} required placeholder="Your name" />
+        </Field>
+        <Field label="Phone Number">
+          <Input value={phone} onChange={(e) => setPhone(e.target.value)} required placeholder="+234..." />
+        </Field>
+      </div>
+
+      <Field label="Email (optional)">
+        <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@email.com" />
+      </Field>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Child's Full Name">
+          <Input value={childName} onChange={(e) => setChildName(e.target.value)} required placeholder="Child's name" />
+        </Field>
+        <Field label="Child's Date of Birth (optional)">
+          <Input value={childDob} onChange={(e) => setChildDob(e.target.value)} placeholder="DD/MM/YYYY" />
+        </Field>
+      </div>
+
+      <Field label="Notes (optional)">
+        <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} placeholder="Anything we should prepare for?" />
+      </Field>
+
+      {msg && <div className="text-sm font-semibold text-black/70">{msg}</div>}
+      <SubmitRow onDone={onDone} loading={loading} />
+    </form>
+  );
+}
+
+// ─── Thanksgiving ─────────────────────────────────────────────────────────────
+// Removed preferred location. Expanded testimony textarea for detailed writing.
+
+function ThanksgivingForm({ onDone }: { onDone: () => void }) {
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState<string | null>(null);
+
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [category, setCategory] = useState("");
+  const [testimony, setTestimony] = useState("");
+  const [hp, setHp] = useState("");
+
+  return (
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
+        setMsg(null);
+        setLoading(true);
+
+        try {
+          await submitToWebApp({
+            formType: "thanksgiving",
+            fullName,
+            phone,
+            email,
+            category,
+            testimony,
+            hp,
+          });
+
+          setMsg("Submitted. We'll reach out soon.");
+          setFullName(""); setPhone(""); setEmail(""); setCategory(""); setTestimony(""); setHp("");
+          setTimeout(() => onDone(), 700);
+        } catch (err: any) {
+          setMsg(err?.message || "Something went wrong.");
+        } finally {
+          setLoading(false);
+        }
+      }}
+      className="grid gap-5"
+    >
+      <div className="hidden">
+        <label>
+          Leave this empty:
+          <input value={hp} onChange={(e) => setHp(e.target.value)} />
+        </label>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Full Name">
+          <Input value={fullName} onChange={(e) => setFullName(e.target.value)} required placeholder="Your name" />
+        </Field>
+        <Field label="Phone Number">
+          <Input value={phone} onChange={(e) => setPhone(e.target.value)} required placeholder="+234..." />
+        </Field>
+      </div>
+
+      <Field label="Email (optional)">
+        <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@email.com" />
+      </Field>
+
+      <Field label="Category (optional)">
+        <Select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="">Select one</option>
+          <option>Healing</option>
+          <option>Provision / Breakthrough</option>
+          <option>Career / Business</option>
+          <option>Family</option>
+          <option>Other</option>
+        </Select>
+      </Field>
+
+      <Field label="Your testimony">
+        <Textarea
+          value={testimony}
+          onChange={(e) => setTestimony(e.target.value)}
+          required
+          rows={10}
+          placeholder="Tell us what God did."
+        />
+      </Field>
+
+      {msg && <div className="text-sm font-semibold text-black/70">{msg}</div>}
+      <SubmitRow onDone={onDone} loading={loading} />
+    </form>
+  );
+}
+
+// ─── Premarital ───────────────────────────────────────────────────────────────
+// Removed preferred location and wedding date fields.
+
+// ─── Premarital ───────────────────────────────────────────────────────────────
+
+function PremaritalForm({ onDone }: { onDone: () => void }) {
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState<string | null>(null);
+
+  const [fullName, setFullName] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [intendedName, setIntendedName] = useState("");
+  const [intendedWhatsapp, setIntendedWhatsapp] = useState("");
+  const [isIntendedMember, setIsIntendedMember] = useState("");
+  const [intendedChurch, setIntendedChurch] = useState("");
+  const [hp, setHp] = useState("");
+
+  return (
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
+        setMsg(null);
+        setLoading(true);
+
+        try {
+          await submitToWebApp({
+            formType: "premarital",
+            fullName,
+            whatsapp,
+            intendedName,
+            intendedWhatsapp,
+            isIntendedMember,
+            intendedChurch,
+            hp,
+          });
+
+          setMsg("Submitted. We'll reach out soon.");
+          setFullName(""); setWhatsapp(""); setIntendedName(""); setIntendedWhatsapp("");
+          setIsIntendedMember(""); setIntendedChurch(""); setHp("");
+          setTimeout(() => onDone(), 700);
+        } catch (err: any) {
+          setMsg(err?.message || "Something went wrong.");
+        } finally {
+          setLoading(false);
+        }
+      }}
+      className="grid gap-5"
+    >
+      <div className="hidden">
+        <label>
+          Leave this empty:
+          <input value={hp} onChange={(e) => setHp(e.target.value)} />
+        </label>
+      </div>
+
+      <Field label="Your full name">
+        <Input 
+          value={fullName} 
+          onChange={(e) => setFullName(e.target.value)} 
+          required 
+          placeholder="Your full name" 
+        />
+      </Field>
+
+      <Field label="Your WhatsApp phone number">
+        <Input 
+          value={whatsapp} 
+          onChange={(e) => setWhatsapp(e.target.value)} 
+          required 
+          placeholder="+234..." 
+        />
+      </Field>
+
+      <Field label="Your intended's full name">
+        <Input 
+          value={intendedName} 
+          onChange={(e) => setIntendedName(e.target.value)} 
+          required 
+          placeholder="Intended's full name" 
+        />
+      </Field>
+
+      <Field label="Your intended's WhatsApp number">
+        <Input 
+          value={intendedWhatsapp} 
+          onChange={(e) => setIntendedWhatsapp(e.target.value)} 
+          required 
+          placeholder="+234..." 
+        />
+      </Field>
+
+      <Field label="Is your intended a member of SaltCity church?">
+        <Select 
+          value={isIntendedMember} 
+          onChange={(e) => {
+            setIsIntendedMember(e.target.value);
+            if (e.target.value === "Yes") {
+              setIntendedChurch(""); // Clear church field if they're a member
+            }
+          }}
+          required
+        >
+          <option value="">Select one</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </Select>
+      </Field>
+
+      {isIntendedMember === "No" && (
+        <Field label="If they do not attend SaltCity church, what church do they attend?">
+          <Input 
+            value={intendedChurch} 
+            onChange={(e) => setIntendedChurch(e.target.value)} 
+            required 
+            placeholder="Church name" 
+          />
+        </Field>
+      )}
+
+      {msg && <div className="text-sm font-semibold text-black/70">{msg}</div>}
       <SubmitRow onDone={onDone} loading={loading} />
     </form>
   );

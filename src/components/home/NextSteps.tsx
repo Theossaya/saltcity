@@ -7,8 +7,6 @@ import Modal from "@/components/ui/Modal";
 
 type ActiveModal = "firstTime" | "discipleship" | "company" | null;
 
-
-
 // tiny helper
 function cx(...classes: (string | false | undefined | null)[]) {
   return classes.filter(Boolean).join(" ");
@@ -40,8 +38,9 @@ export default function NextSteps() {
     () => [
       {
         title: "First Time Here?",
-        desc: "Let us know you came — we’ll help you settle in and connect quickly.",
+        desc: "Let us know you came — we'll help you settle in and connect quickly.",
         action: () => setActiveModal("firstTime"),
+        cta: "Let us know",
         icon: (
           <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 12c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4z" />
@@ -55,6 +54,7 @@ export default function NextSteps() {
         title: "Sign up for Discipleship",
         desc: "Learn the foundations of faith and grow in your walk with Christ.",
         action: () => setActiveModal("discipleship"),
+        cta: "Join the next class",
         icon: (
           <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -66,6 +66,7 @@ export default function NextSteps() {
         title: "Join a Company",
         desc: "Do life with a community of believers close to you.",
         action: () => setActiveModal("company"),
+        cta: "Find your community",
         icon: (
           <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="9" cy="7" r="4" />
@@ -79,6 +80,7 @@ export default function NextSteps() {
         title: "More Steps",
         desc: "Find out more about our growth structures.",
         href: "/next-steps",
+        cta: "See all steps",
         icon: (
           <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <line x1="3" y1="6" x2="21" y2="6" />
@@ -93,78 +95,162 @@ export default function NextSteps() {
 
   return (
     <>
-      <section className="py-16 bg-white" data-next-steps>
+      <section className="py-20 bg-white" data-next-steps>
         <Container>
-          <div className={cx("transition-all duration-700", inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}>
-            <h2 className="text-center text-4xl font-black mb-12 tracking-tight">Start Growing</h2>
+          <div
+            className={cx(
+              "transition-all duration-700",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            )}
+          >
+            {/* Heading + context */}
+            <div className="text-center mb-10">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-black/[0.02] text-sm font-semibold text-black/70">
+                <span className="inline-block w-2 h-2 rounded-full bg-black/40" />
+                Next Steps
+              </div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
-              {NEXT_STEPS.map((step, idx) => {
-                const CardInner = (
-                  <div
-                    className={cx(
-                      "relative h-full flex flex-col",
-                      "rounded-2xl p-8 border border-black/5 bg-white",
-                      "shadow-[0_4px_20px_rgba(0,0,0,0.08)]",
-                      "transition-all duration-300",
-                      "hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(0,0,0,0.14)]",
-                      "active:translate-y-0.5 active:shadow-[0_8px_22px_rgba(0,0,0,0.12)]",
-                      "group"
-                    )}
-                    style={{ transitionDelay: inView ? `${idx * 70}ms` : "0ms" }}
-                  >
-                    <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
-                      <div className="absolute -left-20 -top-20 h-40 w-40 rounded-full bg-black/0 group-hover:bg-black/5 blur-2xl transition-colors duration-300" />
-                      <div className="absolute -right-20 -bottom-20 h-40 w-40 rounded-full bg-black/0 group-hover:bg-black/5 blur-2xl transition-colors duration-300" />
-                    </div>
+              <h2 className="mt-5 text-center text-4xl md:text-5xl font-black tracking-tight">
+                Take Your Next Step
+              </h2>
 
-                    <div className="w-16 h-16 rounded-xl bg-black text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      {step.icon}
-                    </div>
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-black/70 leading-relaxed">
+                Pick the step that matches where you are right now. No pressure — just direction.
+              </p>
+            </div>
 
-                    <h3 className="text-xl font-bold mb-3 text-black leading-snug min-h-[3.2rem]">{step.title}</h3>
-                    <p className="text-base text-black/70 leading-relaxed min-h-[4.5rem]">{step.desc}</p>
+            {/* Background depth + watermark */}
+            <div className="relative max-w-6xl mx-auto">
+              {/* soft background wash */}
+              <div className="pointer-events-none absolute inset-0 -z-10 rounded-[28px] bg-gradient-to-b from-black/[0.03] to-transparent" />
 
-                    <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-black/70">
-                      <span className="transition-colors duration-300 group-hover:text-black">Continue</span>
-                      <span className="relative overflow-hidden w-6 h-4">
-                        <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
-                          →
+              {/* watermark */}
+              <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden rounded-[28px]">
+                <div className="select-none whitespace-nowrap text-[84px] sm:text-[120px] lg:text-[160px] font-black tracking-tight text-black/[0.03]">
+                  SALTCITY
+                </div>
+              </div>
+
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 p-4 sm:p-6 rounded-[28px]">
+                {NEXT_STEPS.map((step, idx) => {
+                  const isPrimary = step.title === "First Time Here?";
+
+                  const CardInner = (
+                    <div
+                      className={cx(
+                        "relative h-full flex flex-col",
+                        "rounded-2xl p-8 border bg-white",
+                        "shadow-[0_6px_26px_rgba(0,0,0,0.08)]",
+                        "transition-all duration-300",
+                        "hover:-translate-y-1 hover:shadow-[0_16px_46px_rgba(0,0,0,0.14)]",
+                        "active:translate-y-0.5 active:shadow-[0_10px_28px_rgba(0,0,0,0.12)]",
+                        "group overflow-hidden",
+                        isPrimary ? "border-black/15" : "border-black/8"
+                      )}
+                      style={{ transitionDelay: inView ? `${idx * 70}ms` : "0ms" }}
+                    >
+                      {/* hover glow */}
+                      <div className="pointer-events-none absolute inset-0">
+                        <div className="absolute -left-24 -top-24 h-52 w-52 rounded-full bg-black/0 group-hover:bg-black/[0.06] blur-3xl transition-colors duration-300" />
+                        <div className="absolute -right-24 -bottom-24 h-52 w-52 rounded-full bg-black/0 group-hover:bg-black/[0.05] blur-3xl transition-colors duration-300" />
+                      </div>
+
+                      {/* subtle top accent */}
+                      <div className="pointer-events-none absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-black/0 via-black/25 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* Badge for primary */}
+                      {isPrimary && (
+                        <div className="absolute top-6 right-6 text-xs font-bold tracking-wide uppercase">
+                          <span className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-black/70">
+                            Start here
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Icon */}
+                      <div className="mb-6">
+                        <div
+                          className={cx(
+                            "w-16 h-16 rounded-2xl flex items-center justify-center",
+                            "border border-black/10",
+                            "text-black",
+                            "transition-all duration-300",
+                            "group-hover:scale-110"
+                          )}
+                          style={{
+                            background:
+                              "linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.00))",
+                          }}
+                        >
+                          {step.icon}
+                        </div>
+                      </div>
+
+                      <h3 className="text-xl font-black mb-3 text-black leading-snug min-h-[3.2rem]">
+                        {step.title}
+                      </h3>
+
+                      <p className="text-base text-black/70 leading-relaxed min-h-[4.5rem]">
+                        {step.desc}
+                      </p>
+
+                      {/* CTA */}
+                      <div className="mt-6 flex items-center gap-2 text-sm font-semibold">
+                        <span className="text-black/70 group-hover:text-black transition-colors duration-300">
+                          {step.cta}
                         </span>
-                      </span>
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          className="text-black/40 group-hover:text-black group-hover:translate-x-1 transition-all duration-300"
+                        >
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
-                );
+                  );
 
-                if ("href" in step && step.href) {
+                  if ("href" in step && step.href) {
+                    return (
+                      <Link key={step.title} href={step.href} className="block">
+                        <div
+                          className={cx(
+                            "transition-all duration-700",
+                            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                          )}
+                          style={{ transitionDelay: inView ? `${idx * 70}ms` : "0ms" }}
+                        >
+                          {CardInner}
+                        </div>
+                      </Link>
+                    );
+                  }
+
                   return (
-                    <Link key={step.title} href={step.href} className="block">
+                    <button
+                      key={step.title}
+                      type="button"
+                      onClick={step.action}
+                      className="text-left block"
+                    >
                       <div
-                        className={cx("transition-all duration-700", inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}
+                        className={cx(
+                          "transition-all duration-700",
+                          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                        )}
                         style={{ transitionDelay: inView ? `${idx * 70}ms` : "0ms" }}
                       >
                         {CardInner}
                       </div>
-                    </Link>
+                    </button>
                   );
-                }
-
-                return (
-                  <button
-                    key={step.title}
-                    type="button"
-                    onClick={step.action}
-                    className="text-left block"
-                  >
-                    <div
-                      className={cx("transition-all duration-700", inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}
-                      style={{ transitionDelay: inView ? `${idx * 70}ms` : "0ms" }}
-                    >
-                      {CardInner}
-                    </div>
-                  </button>
-                );
-              })}
+                })}
+              </div>
             </div>
           </div>
         </Container>
@@ -174,9 +260,9 @@ export default function NextSteps() {
       <Modal
         open={activeModal === "firstTime"}
         title="First Time Here?"
-        description="Fill this and we’ll help you connect quickly."
+        description="Fill this and we'll help you connect quickly."
         onClose={() => setActiveModal(null)}
-        footer={<div className="text-xs text-black/60">We’ll reach out within 24–48 hours.</div>}
+        footer={<div className="text-xs text-black/60">We'll reach out within 24–48 hours.</div>}
       >
         <FirstTimeForm onDone={() => setActiveModal(null)} />
       </Modal>
@@ -185,7 +271,7 @@ export default function NextSteps() {
       <Modal
         open={activeModal === "discipleship"}
         title="Sign up for Discipleship"
-        description="Fill this and we’ll reach out with the next steps."
+        description="Classes hold every Sunday at 7am at SaltCity Central. Fill this and we'll reach out with the next steps."
         onClose={() => setActiveModal(null)}
         footer={<div className="text-xs text-black/60">By submitting, you agree we may contact you about discipleship.</div>}
       >
@@ -196,14 +282,12 @@ export default function NextSteps() {
       <Modal
         open={activeModal === "company"}
         title="Join a Company"
-        description="Tell us where you are and what kind of community you’re looking for."
+        description="Tell us where you are and what kind of community you're looking for."
         onClose={() => setActiveModal(null)}
-        footer={<div className="text-xs text-black/60">We’ll connect you to a company lead near you.</div>}
+        footer={<div className="text-xs text-black/60">We'll connect you to a company lead near you.</div>}
       >
         <CompanyForm onDone={() => setActiveModal(null)} />
       </Modal>
-
-      
     </>
   );
 }
@@ -258,13 +342,7 @@ function Textarea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
   );
 }
 
-function SubmitRow({
-  onDone,
-  loading,
-}: {
-  onDone: () => void;
-  loading?: boolean;
-}) {
+function SubmitRow({ onDone, loading }: { onDone: () => void; loading?: boolean }) {
   return (
     <div className="mt-6 flex flex-wrap gap-3">
       <button
@@ -315,7 +393,6 @@ async function submitToWebApp(payload: Record<string, any>) {
   }
 }
 
-
 /* ---------- First Time Form ---------- */
 
 function FirstTimeForm({ onDone }: { onDone: () => void }) {
@@ -327,7 +404,7 @@ function FirstTimeForm({ onDone }: { onDone: () => void }) {
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [notes, setNotes] = useState("");
-  const [hp, setHp] = useState(""); // honeypot
+  const [hp, setHp] = useState("");
 
   return (
     <form
@@ -347,11 +424,8 @@ function FirstTimeForm({ onDone }: { onDone: () => void }) {
             hp,
           });
 
-          setMsg("Submitted. We’ll reach out soon.");
-          // optional reset
+          setMsg("Submitted. We'll reach out soon.");
           setFullName(""); setPhone(""); setEmail(""); setLocation(""); setNotes(""); setHp("");
-
-          // close after a beat
           setTimeout(() => onDone(), 700);
         } catch (err: any) {
           setMsg(err?.message || "Something went wrong.");
@@ -361,7 +435,6 @@ function FirstTimeForm({ onDone }: { onDone: () => void }) {
       }}
       className="grid gap-5"
     >
-      {/* honeypot (hidden) */}
       <div className="hidden">
         <label>
           Leave this empty:
@@ -382,7 +455,7 @@ function FirstTimeForm({ onDone }: { onDone: () => void }) {
         <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@email.com" />
       </Field>
 
-      <Field label="Preferred Location (optional)">
+      <Field label="Which service did you attend? (optional)">
         <Input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="SaltCity Central, PTI Campus..." />
       </Field>
 
@@ -398,6 +471,7 @@ function FirstTimeForm({ onDone }: { onDone: () => void }) {
 }
 
 /* ---------- Discipleship Form ---------- */
+// Classes: every Sunday at 7am, SaltCity Central. No location or availability fields.
 
 function DiscipleshipForm({ onDone }: { onDone: () => void }) {
   const [loading, setLoading] = useState(false);
@@ -406,8 +480,6 @@ function DiscipleshipForm({ onDone }: { onDone: () => void }) {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [location, setLocation] = useState("");
-  const [availability, setAvailability] = useState("");
   const [notes, setNotes] = useState("");
   const [hp, setHp] = useState("");
 
@@ -424,15 +496,12 @@ function DiscipleshipForm({ onDone }: { onDone: () => void }) {
             fullName,
             phone,
             email,
-            location,
-            availability,
             notes,
             hp,
-
           });
 
-          setMsg("Submitted. We’ll reach out soon.");
-          setFullName(""); setPhone(""); setEmail(""); setLocation(""); setAvailability(""); setNotes(""); setHp("");
+          setMsg("Submitted. We'll reach out soon.");
+          setFullName(""); setPhone(""); setEmail(""); setNotes(""); setHp("");
           setTimeout(() => onDone(), 700);
         } catch (err: any) {
           setMsg(err?.message || "Something went wrong.");
@@ -461,25 +530,6 @@ function DiscipleshipForm({ onDone }: { onDone: () => void }) {
       <Field label="Email (optional)">
         <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@email.com" />
       </Field>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Preferred Location">
-          <Select value={location} onChange={(e) => setLocation(e.target.value)} required>
-            <option value="" disabled>Select one</option>
-            <option>SaltCity Central</option>
-            <option>PTI Campus</option>
-            <option>Online</option>
-          </Select>
-        </Field>
-        <Field label="Availability">
-          <Select value={availability} onChange={(e) => setAvailability(e.target.value)} required>
-            <option value="" disabled>Select one</option>
-            <option>Weekdays</option>
-            <option>Weekends</option>
-            <option>Anytime</option>
-          </Select>
-        </Field>
-      </div>
 
       <Field label="Anything we should know? (optional)">
         <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} placeholder="Tell us briefly..." />
@@ -525,7 +575,7 @@ function CompanyForm({ onDone }: { onDone: () => void }) {
             hp,
           });
 
-          setMsg("Submitted. We’ll reach out soon.");
+          setMsg("Submitted. We'll reach out soon.");
           setFullName(""); setPhone(""); setEmail(""); setCity(""); setAgeRange(""); setNotes(""); setHp("");
           setTimeout(() => onDone(), 700);
         } catch (err: any) {
@@ -571,7 +621,6 @@ function CompanyForm({ onDone }: { onDone: () => void }) {
           </Select>
         </Field>
       </div>
-
 
       <Field label="Notes (optional)">
         <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} placeholder="Anything specific you're looking for..." />

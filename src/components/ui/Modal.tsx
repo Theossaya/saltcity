@@ -51,9 +51,11 @@ export default function Modal({
         className="absolute inset-0 bg-black/60"
       />
 
-      {/* Panel */}
-      <div className="relative w-full max-w-[640px] rounded-2xl bg-white shadow-2xl border border-black/10 overflow-hidden">
-        <div className="p-6 border-b border-black/10">
+      {/* Panel — flex column, capped at 90vh so it never overflows the screen */}
+      <div className="relative w-full max-w-[640px] max-h-[90vh] flex flex-col rounded-2xl bg-white shadow-2xl border border-black/10 overflow-hidden">
+
+        {/* Header — fixed, never scrolls */}
+        <div className="shrink-0 p-6 border-b border-black/10">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h3 className="text-xl font-black tracking-tight text-black">
@@ -76,10 +78,14 @@ export default function Modal({
           </div>
         </div>
 
-        <div className="p-6">{children}</div>
+        {/* Body — scrolls when content is taller than the available space */}
+        <div className="flex-1 overflow-y-auto p-6">
+          {children}
+        </div>
 
+        {/* Footer — fixed, never scrolls */}
         {footer ? (
-          <div className="p-6 border-t border-black/10 bg-neutral-50">
+          <div className="shrink-0 p-6 border-t border-black/10 bg-neutral-50">
             {footer}
           </div>
         ) : null}

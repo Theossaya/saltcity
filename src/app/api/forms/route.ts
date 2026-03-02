@@ -5,7 +5,6 @@ const API_KEY = process.env.FORMS_API_KEY || "";
 
 export async function POST(request: NextRequest) {
   try {
-    // Parse the incoming request body
     const body = await request.json();
 
     if (!WEBAPP_URL) {
@@ -15,27 +14,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Forward to Google Apps Script with API key
     const url = new URL(WEBAPP_URL);
-    if (API_KEY) {
-      url.searchParams.set("key", API_KEY);
-    }
+    if (API_KEY) url.searchParams.set("key", API_KEY);
+
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), 12_000);
 
     const response = await fetch(url.toString(), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "User-Agent": request.headers.get("user-agent") || "saltcity-web",
       },
       body: JSON.stringify(body),
+      signal: controller.signal,
     });
 
-    const text = await response.text();
-    let data: any = null;
+    clearTimeout(t);
 
+    const text = await response.text();
+
+    let data: any = null;
     try {
       data = JSON.parse(text);
-    } catch (e) {
-      console.error("Failed to parse response:", text);
+    } catch {
+      console.error("Apps Script non-JSON response:", text);
       return NextResponse.json(
         { ok: false, error: "Invalid response from server" },
         { status: 500 }
@@ -51,10 +54,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ ok: true });
   } catch (error: any) {
+    const msg =
+      error?.name === "AbortError"
+        ? "Request timed out"
+        : error?.message || "Server error";
+
     console.error("Form submission error:", error);
-    return NextResponse.json(
-      { ok: false, error: error?.message || "Server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ ok: false, error: msg }, { status: 500 });
   }
 }

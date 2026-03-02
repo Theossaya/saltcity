@@ -182,7 +182,7 @@ export const MEDIA_ITEMS: MediaItem[] = [
 
 
   // --- WRITE THE VISION ---
-  {
+{
     category: "sermon-series",
     slug: "fruitful-christianity",
     title: "Fruitful Christianity",
@@ -197,7 +197,7 @@ export const MEDIA_ITEMS: MediaItem[] = [
         slug: "fruitful-christianity",
         title: "Fruitful Christianity",
         part: "PART 1",
-        duration: "3:00:00",
+        duration: "1:10:54",
         image: img("/images/fruitful-christianity.jpeg"),
         youtubeID: "vG9PZhunBkE"
       },
@@ -205,13 +205,60 @@ export const MEDIA_ITEMS: MediaItem[] = [
         slug: "fruitful-christianity-2.0",
         title: "Fruitful Christianity 2.0",
         part: "PART 2",
-        duration: "3:00:00",
+        duration: "1:13:08",
         image: img("/images/fruitful-christianity.jpeg"),
         youtubeID: "LNlqJzHCQ7g"
       },
-  
+      {
+        slug: "fruitful-christianity-3.0",
+        title: "Fruitful Christianity 3.0",
+        part: "PART 3",
+        duration: "1:26:33",
+        image: img("/images/fruitful-christianity.jpeg"),
+        youtubeID: "8HQX41RwIhg"
+      },
+      {
+        slug: "fruitful-christianity-4.0",
+        title: "Fruitful Christianity 4.0",
+        part: "PART 4",
+        duration: "1:12:25",
+        image: img("/images/fruitful-christianity.jpeg"),
+        youtubeID: "1oPAeozg5gw"
+      },
+      {
+        slug: "fruitful-christianity-5.0",
+        title: "Fruitful Christianity 5.0",
+        part: "PART 5",
+        duration: "1:15:57",
+        image: img("/images/fruitful-christianity.jpeg"),
+        youtubeID: "N5-SRIgj97w"
+      },
+      {
+        slug: "fruitful-christianity-6.0",
+        title: "Fruitful Christianity 6.0",
+        part: "PART 6",
+        duration: "1:55:20",
+        image: img("/images/fruitful-christianity.jpeg"),
+        youtubeID: "l-EKhJvW9fo"
+      },
+      {
+        slug: "fruitful-christianity-7.0",
+        title: "Fruitful Christianity 7.0",
+        part: "PART 7",
+        duration: "1:25:14",
+        image: img("/images/fruitful-christianity.jpeg"),
+        youtubeID: "8rdpKzqydZc"
+      },
+      {
+        slug: "fruitful-christianity-8.0",
+        title: "Fruitful Christianity 8.0",
+        part: "PART 8",
+        duration: "1:01:00",
+        image: img("/images/fruitful-christianity.jpeg"),
+        youtubeID: "QAc5uGM2tns"
+      }
     ],
-    tags: ["vision", "purpose", "patience"],
+    tags: ["growth", "diligence", "usefulness", "vision", "discipline"],
   },
 
   // SONGS

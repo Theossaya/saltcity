@@ -49,7 +49,7 @@ export default function SongsPage() {
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight">
-              Our Songs
+              Our Music
             </h1>
 
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
