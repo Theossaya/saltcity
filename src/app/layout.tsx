@@ -1,8 +1,35 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/nav/Header";
 import Footer from "@/components/layout/Footer";
 
+const galano = localFont({
+  src: [
+    {
+      path: "../../public/fonts/GalanoGrotesqueRegular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GalanoGrotesqueMedium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GalanoGrotesqueBold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/GalanoGrotesqueBlack.otf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-galano",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "SaltCity Central",
@@ -17,8 +44,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={galano.variable}>
+      <body className="font-sans">
         <Header />
         {children}
         <Footer />

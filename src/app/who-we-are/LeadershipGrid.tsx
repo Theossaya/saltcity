@@ -143,11 +143,11 @@ export default function LeadershipGrid() {
       },
       {
         key: "brave",
-        name: "Pastor Brave Iyomih",
+        name: "Pastor Providence Brave Iyomih",
         title: "Pastor, LifeCity",
         image: "/images/PB.jpg",
         button: "About",
-        modalTitle: "Pastor Brave Iyomih",
+        modalTitle: "Pastor Providence Brave Iyomih",
         modalBody:
           "Pastor Brave Iyomih serves as a Pastor at LifeCity. He contributes to the ministry through his expression of worship and exhortation, strengthening the spiritual life of the church.",
         focusY: 12,

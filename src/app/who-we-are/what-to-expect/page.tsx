@@ -18,7 +18,7 @@ const EXPRESSIONS = [
   {
     title: "LifeCity",
     description: "The vibrant youthful expression of SALTCITY.",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",
+    image: "images/lifecity.jpeg",
     href: "/lifecity"
   },
   {
@@ -99,10 +99,10 @@ export default function WhatToExpectPage() {
       <section className="relative h-[450px] bg-gradient-to-br from-slate-900 to-slate-800">
         <div className="absolute inset-0">
           <Image 
-            src="/images/fulfill_call.jpg"
+            src="/images/fulfill_call.jpeg"
             alt="Fulfill your calling"
             fill // This makes it fill the parent div
-            className="object-cover object-top opacity-20"
+            className="object-cover opacity-90"
             priority // Loads this image first
           />
         </div>

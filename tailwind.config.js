@@ -8,7 +8,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
+        sans: [
+          "var(--font-galano)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       fontSize: {
         hero: ["72px", { lineHeight: "72px" }],
@@ -31,6 +36,3 @@ module.exports = {
   },
   plugins: [],
 };
-
-
-

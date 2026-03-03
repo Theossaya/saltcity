@@ -19,7 +19,28 @@ type BlogPost = {
 
 const BLOG_POSTS: BlogPost[] = [
   {
-    id: "1",
+    id: "the-art-of-expectation",
+    title: "The Art of Expectation",
+    excerpt: "Discover how biblical expectation shapes your faith journey and positions you to receive from God. A deep dive into the Greek words for expectation and what they mean for your daily walk.",
+    author: "Tobore David",
+    date: "2026-02-18",
+    readTime: "12 min read",
+    category: "Faith & Expectation",
+    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&auto=format&fit=crop",
+    featured: true,
+  },
+  {
+    id: "should-gospel-music-be-sold",
+    title: "Should Gospel Music Be Sold?",
+    excerpt: "A thought-provoking examination of the debate around selling gospel music, with biblical, historical, and practical perspectives on supporting music ministers.",
+    author: "Tobore David",
+    date: "2026-02-18",
+    readTime: "15 min read",
+    category: "Music & Ministry",
+    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop",
+  },
+  {
+    id: "living-above-fear",
     title: "Living Above Fear: Walking Boldly in Christ",
     excerpt: "Pastor Tobore teaches how to silence fear, stand firm in faith, and live with spiritual confidence in uncertain times.",
     author: "Pastor Tobore",
@@ -27,12 +48,11 @@ const BLOG_POSTS: BlogPost[] = [
     readTime: "9 min read",
     category: "Faith & Courage",
     image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&auto=format&fit=crop",
-    featured: true,
   },
   {
-    id: "2",
+    id: "grace-that-sustains",
     title: "Grace That Sustains: Strength for the Hidden Battles",
-    excerpt: "Pastor Edison shares how God’s grace carries believers through seasons no one else sees.",
+    excerpt: "Pastor Edison shares how God's grace carries believers through seasons no one else sees.",
     author: "Pastor Edison",
     date: "2026-02-05",
     readTime: "7 min read",
@@ -40,7 +60,7 @@ const BLOG_POSTS: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800&auto=format&fit=crop",
   },
   {
-    id: "3",
+    id: "when-god-says-move",
     title: "When God Says Move: Obedience and Divine Timing",
     excerpt: "Pastor Seun explores the power of immediate obedience and how destiny often waits on one decisive step.",
     author: "Pastor Seun",
@@ -50,7 +70,7 @@ const BLOG_POSTS: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=800&auto=format&fit=crop",
   },
   {
-    id: "4",
+    id: "identity-in-christ",
     title: "Identity in Christ: Breaking Free from Labels",
     excerpt: "Pastor Karis teaches how to reject false identities and embrace who God says you are.",
     author: "Pastor Karis",
@@ -60,35 +80,37 @@ const BLOG_POSTS: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1485217988980-11786ced9454?w=800&auto=format&fit=crop",
   },
   {
-    id: "5",
+    id: "fire-of-revival",
     title: "The Fire of Revival: Stirring Hunger for God Again",
     excerpt: "Pastor Racheal calls the church back to passionate devotion and a fresh encounter with the Holy Spirit.",
     author: "Pastor Racheal",
     date: "2026-01-29",
     readTime: "10 min read",
     category: "Revival",
-    image: "/images/capital.jpg",
+    image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&auto=format&fit=crop",
   },
   {
-    id: "6",
+    id: "serving-with-excellence",
     title: "Serving with Excellence: Faithfulness in Small Things",
     excerpt: "Pastor Tobore reminds believers that greatness in ministry begins with consistency in the unseen places.",
     author: "Pastor Tobore",
     date: "2026-01-27",
     readTime: "5 min read",
     category: "Leadership",
-    image: "images/listen.jpg",
+    image: "https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800&auto=format&fit=crop",
   },
 ];
 
 const CATEGORIES = [
   "All Posts",
-  "Faith & Purpose",
-  "Family",
+  "Faith & Expectation",
+  "Music & Ministry",
+  "Faith & Courage",
   "Spiritual Growth",
-  "Youth",
+  "Purpose",
+  "Identity",
+  "Revival",
   "Leadership",
-  "Worship",
 ];
 
 export default function BlogPage() {
@@ -106,7 +128,8 @@ export default function BlogPage() {
     const matchesSearch =
       searchQuery === "" ||
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.author.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -145,14 +168,13 @@ export default function BlogPage() {
           </div>
         </Container>
       </section>
-{/* Search & Filter Bar */}
+
+      {/* Search & Filter Bar */}
       <section className="sticky top-[73px] z-30 bg-white/95 backdrop-blur-md border-b border-black/5 shadow-sm">
         <Container>
-          {/* Use flex-col for mobile, row for desktop. 
-              Items-stretch on mobile ensures the search bar takes full width. */}
           <div className="py-4 lg:py-6 flex flex-col lg:flex-row gap-4 lg:items-center justify-between">
             
-            {/* Search - Max width only applies to desktop */}
+            {/* Search */}
             <div className="relative w-full lg:max-w-md">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-black/40" />
               <input
@@ -164,7 +186,7 @@ export default function BlogPage() {
               />
             </div>
 
-            {/* Categories - The "Scroll Wrapper" */}
+            {/* Categories */}
             <div className="relative w-full lg:w-auto">
               <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0">
                 {CATEGORIES.map((cat) => (
@@ -183,7 +205,6 @@ export default function BlogPage() {
                 ))}
               </div>
               
-              {/* Optional: Visual hint that there's more to scroll on mobile */}
               <div className="absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-white/80 to-transparent pointer-events-none lg:hidden" />
             </div>
           </div>
@@ -191,7 +212,7 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Post */}
-      {featuredPost && selectedCategory === "All Posts" && (
+      {featuredPost && selectedCategory === "All Posts" && searchQuery === "" && (
         <section className="py-16 bg-gradient-to-b from-black/[0.02] to-transparent">
           <Container>
             <div className="text-xs font-bold uppercase tracking-widest text-black/50 mb-6">
@@ -246,13 +267,13 @@ export default function BlogPage() {
       {/* Blog Grid */}
       <section className="py-16">
         <Container>
-          {regularPosts.length === 0 ? (
+          {filteredPosts.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-xl text-black/50">No articles found matching your criteria.</p>
             </div>
           ) : (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {regularPosts.map((post, idx) => (
+              {(featuredPost && selectedCategory === "All Posts" && searchQuery === "" ? regularPosts : filteredPosts).map((post, idx) => (
                 <Link
                   key={post.id}
                   href={`/blog/${post.id}`}
