@@ -308,7 +308,7 @@ export default function MembershipForm({ onDone }: { onDone: () => void }) {
   </button>{" "}
   and I agree to SaltCity Church collecting and using my personal information for
   membership records, pastoral care, and church communications as described.
-  I understand that I am providing this consent voluntarily and that I can withdraw it at any time.
+  I provide this consent voluntarily and understand that I can withdraw my consent at any time.
 </span>
           </label>
         </div>
