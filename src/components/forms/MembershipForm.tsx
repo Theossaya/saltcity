@@ -122,61 +122,88 @@ function PrivacyPolicyModal({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="prose prose-sm max-w-none flex-1 space-y-5 overflow-y-auto px-6 py-6 leading-relaxed text-black/80">
-          <p className="text-base font-bold text-black">
-            My Consent for SaltCity Church to Use My Information
-          </p>
 
-          <p>
-            By checking the box below, I agree to provide my personal information to Salt City
-            Church, Warri. I understand that the church will use this information to maintain its
-            membership records, provide me with pastoral care, and send me updates about church
-            services and activities.
-          </p>
+  <p className="text-base font-bold text-black">
+    Privacy Policy
+  </p>
 
-          <p className="font-semibold text-black">I also understand that:</p>
+  <p>
+    This Privacy Policy explains how SaltCity Church (the "Church") handles your information.
+    We are committed to protecting your privacy in line with the Nigeria Data Protection Act, 2023.
+  </p>
 
-          <ul className="list-none space-y-3 pl-0">
-            <li>
-              <span className="font-semibold text-black">My Information is Safe:</span>{" "}
-              The church will take steps to keep my data secure and will not share it with any
-              third parties without my permission.
-            </li>
-            <li>
-              <span className="font-semibold text-black">My Rights:</span>{" "}
-              I have the right to ask to see the information the church holds about me, correct any
-              mistakes, or ask for my information to be deleted.
-            </li>
-            <li>
-              <span className="font-semibold text-black">I Can Change My Mind:</span>{" "}
-              I have the right to withdraw my consent at any time. Withdrawing my consent is as easy
-              as giving it and can be done by contacting us at{" "}
-              <a href="mailto:info@saltcitycentral.com" className="underline text-black">
-                info@saltcitycentral.com
-              </a>{" "}
-              or calling our office.
-            </li>
-            <li>
-              <span className="font-semibold text-black">Retention:</span>{" "}
-              The church will only keep my information for as long as it is needed for these
-              purposes.
-            </li>
-            <li>
-              <span className="font-semibold text-black">Complaints:</span>{" "}
-              If I am unhappy with how my data is handled, I can lodge a complaint with the{" "}
-              <a
-                href="https://ndpc.gov.ng"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline text-black"
-              >
-                Nigeria Data Protection Commission
-              </a>
-              .
-            </li>
-          </ul>
+  <h4 className="font-semibold text-black">1. Who We Are</h4>
+  <p>
+    The Church is the "Data Controller," meaning we decide how and why your personal information is used.
+  </p>
+  <ul>
+    <li>Address: 20, Okumagba Avenue, Delta State</li>
+    <li>Contact: info@saltcitycentral.org, +234-803-059-7015</li>
+  </ul>
 
-          <p>I agree to the collection and use of my information as described above.</p>
-        </div>
+  <h4 className="font-semibold text-black">2. Information We Collect</h4>
+  <ul>
+    <li>Personal Information: Your name, address, phone number, email, and date of birth.</li>
+    <li>
+      Sensitive Information: As a religious organisation, we process information about your religious beliefs,
+      your family, and any pastoral needs you share with us.
+    </li>
+  </ul>
+
+  <h4 className="font-semibold text-black">3. Why We Use Your Information</h4>
+  <ul>
+    <li>To keep an accurate list of our members.</li>
+    <li>To provide you with spiritual support and pastoral care.</li>
+    <li>To send you updates about church services, events, and activities.</li>
+    <li>To manage volunteers and church groups.</li>
+  </ul>
+
+  <h4 className="font-semibold text-black">4. Our Legal Basis</h4>
+  <ul>
+    <li>You gave us consent when you accepted this policy.</li>
+    <li>
+      Legitimate Church Activity: The law allows religious organisations to process member data
+      to carry out their purpose, provided it is kept secure and not shared externally without permission.
+    </li>
+  </ul>
+
+  <h4 className="font-semibold text-black">5. Keeping Your Data Safe</h4>
+  <p>
+    We use appropriate security measures to protect your information from loss, misuse, or unauthorised access,
+    including password protection and secure storage.
+  </p>
+
+  <h4 className="font-semibold text-black">6. Sharing Your Information</h4>
+  <ul>
+    <li>We do not share your data outside the Church without your permission.</li>
+    <li>We may share it only if required by law.</li>
+  </ul>
+
+  <h4 className="font-semibold text-black">7. How Long We Keep Your Information</h4>
+  <p>
+    We keep your information only for as long as necessary to serve you as a member or meet legal obligations.
+  </p>
+
+  <h4 className="font-semibold text-black">8. Your Rights</h4>
+  <ul>
+    <li>You can request access to your data.</li>
+    <li>You can request corrections.</li>
+    <li>You can request deletion.</li>
+    <li>You can withdraw consent at any time.</li>
+  </ul>
+
+  <h4 className="font-semibold text-black">9. Children’s Privacy</h4>
+  <p>
+    For individuals under 18, we require consent from a parent or legal guardian.
+  </p>
+
+  <h4 className="font-semibold text-black">10. Complaints</h4>
+  <p>
+    If you are not satisfied with how your data is handled, you may contact us or file a complaint with the
+    Nigeria Data Protection Commission.
+  </p>
+
+</div>
 
         <div className="shrink-0 border-t border-black/10 bg-neutral-50 px-6 py-4">
           <button
@@ -271,17 +298,18 @@ export default function MembershipForm({ onDone }: { onDone: () => void }) {
               required
             />
             <span className="leading-relaxed text-sm text-black/70">
-              I hereby consent to the collection and storage of my personal data by Salt City Church
-              for administrative and record-keeping purposes.{" "}
-              <button
-                type="button"
-                onClick={() => setShowPrivacy(true)}
-                className="font-semibold text-black underline transition-opacity hover:opacity-70"
-              >
-                Read our Privacy Policy
-              </button>
-              .
-            </span>
+  I have read the{" "}
+  <button
+    type="button"
+    onClick={() => setShowPrivacy(true)}
+    className="font-semibold text-black underline transition-opacity hover:opacity-70"
+  >
+    Privacy Policy
+  </button>{" "}
+  and I agree to SaltCity Church collecting and using my personal information for
+  membership records, pastoral care, and church communications as described.
+  I understand that I am providing this consent voluntarily and that I can withdraw it at any time.
+</span>
           </label>
         </div>
 
@@ -344,12 +372,13 @@ export default function MembershipForm({ onDone }: { onDone: () => void }) {
               <option value="" disabled>
                 Select one
               </option>
-              <option>Under 18</option>
-              <option>18–24</option>
-              <option>25–34</option>
-              <option>35–44</option>
-              <option>45–54</option>
-              <option>55+</option>
+              <option>20–25</option>
+              <option>26–30</option>
+              <option>31–35</option>
+              <option>36–40</option>
+              <option>41–45</option>
+              <option>46–50</option>
+              <option>50+</option>
             </Select>
           </Field>
           <Field label="Occupation">
