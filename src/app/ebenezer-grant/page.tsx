@@ -1,3 +1,5 @@
+import { existsSync } from "fs";
+import path from "path";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import { isEbenezerGrantClosed } from "@/lib/ebenezerGrant/deadline";
@@ -71,6 +73,10 @@ export const metadata = {
 
 export const dynamic = "force-dynamic";
 
+const wordmarkExists = existsSync(
+  path.join(process.cwd(), "public", "images", "ebenezer-grant-wordmark.svg")
+);
+
 function BriefSection({
   number,
   title,
@@ -114,11 +120,18 @@ export default function EbenezerGrantPage() {
       <section className="border-b border-black/8 bg-white">
         <Container className="max-w-[1060px] pb-14 pt-24 md:pb-16 md:pt-28">
           <div className="mx-auto max-w-3xl text-center">
-            <img
-              src="/images/ebenezer-grant-wordmark.svg"
-              alt="The Ebenezer Grant"
-              className="mx-auto h-auto w-full max-w-[520px]"
-            />
+            {wordmarkExists ? (
+              <img
+                src="/images/ebenezer-grant-wordmark.svg"
+                alt="The Ebenezer Grant"
+                className="mx-auto h-auto w-full max-w-[520px]"
+              />
+            ) : (
+              <h1 className="text-5xl font-black leading-[0.95] md:text-7xl">
+                <span className="block text-[#6F1D1B]">The Ebenezer</span>
+                <span className="block text-[#9C7A49]">Grant</span>
+              </h1>
+            )}
             
             <div className="mx-auto mt-7 max-w-xl border-y border-[#7B1E1E]/15 py-4">
               <p className="text-sm font-bold text-[#240F0D]">

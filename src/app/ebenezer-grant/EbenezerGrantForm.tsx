@@ -120,12 +120,14 @@ function FormSection({
 
 export default function EbenezerGrantForm({ closed }: Props) {
   const [error, setError] = useState("");
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [receipt, setReceipt] = useState<{ referenceNumber: string } | null>(null);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
+    setValidationErrors([]);
     setSubmitting(true);
 
     try {
@@ -134,10 +136,19 @@ export default function EbenezerGrantForm({ closed }: Props) {
         method: "POST",
         body: formData,
       });
-      const data = await response.json();
+      const data = await response.json().catch(() => null);
 
-      if (!response.ok || !data?.ok) {
-        setError(data?.error || "We could not submit your application. Please try again.");
+      if (!response.ok || !data?.success) {
+        const errors = Array.isArray(data?.errors)
+          ? data.errors.filter((item: unknown): item is string => typeof item === "string")
+          : [];
+
+        setError(
+          data?.message ||
+            data?.error ||
+            "We could not submit your application. Please check the form and try again."
+        );
+        setValidationErrors(errors);
         return;
       }
 
@@ -184,12 +195,6 @@ export default function EbenezerGrantForm({ closed }: Props) {
       onSubmit={handleSubmit}
       className="space-y-9 rounded-xl border border-black/10 bg-white p-5 md:p-8"
     >
-      {error ? (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-700">
-          {error}
-        </div>
-      ) : null}
-
       <FormSection number="01" title="Applicant Information">
         <div className="grid gap-5 md:grid-cols-2">
           <Field label="Owner/Director Full Name" name="owner_director_name" />
@@ -274,13 +279,29 @@ export default function EbenezerGrantForm({ closed }: Props) {
         </label>
       </FormSection>
 
+      {error ? (
+        <div
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800"
+        >
+          <p className="font-bold">{error}</p>
+          {validationErrors.length > 0 ? (
+            <ul className="mt-3 list-disc space-y-1 pl-5">
+              {validationErrors.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      ) : null}
+
       <button
         type="submit"
         disabled={submitting}
         className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#6F1D1B] px-8 py-4 text-sm font-bold text-white transition hover:bg-[#531412] disabled:cursor-not-allowed disabled:opacity-70 md:w-auto"
       >
         {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-        {submitting ? "Submitting application" : "Submit application"}
+        {submitting ? "Submitting..." : "Submit application"}
       </button>
     </form>
   );

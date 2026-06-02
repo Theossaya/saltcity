@@ -33,6 +33,73 @@ const REQUIRED_FILES = [
   "revenue_projection",
 ] as const;
 
+const FIELD_LABELS: Record<string, string> = {
+  owner_director_name: "Owner/Director Full Name",
+  email: "Email Address",
+  phone: "Phone Number",
+  business_name: "Business Name",
+  business_registration_number: "Business Registration/Incorporation Number",
+  business_address: "Business Address",
+  business_sector: "Business Sector",
+  date_business_started: "Date Business Started",
+  business_description: "Brief Business Description",
+  current_estimated_monthly_revenue: "Current Estimated Monthly Revenue",
+  projected_monthly_revenue_after_financing: "Projected Monthly Revenue After Financing",
+  intended_use_of_funds: "Intended Use of Funds",
+  revenue_growth_explanation: "Revenue Growth Explanation",
+  incorporation_document: "Incorporation Documents",
+  financial_report: "Financial Report or Business Account Statement",
+  revenue_projection: "Revenue Projection",
+};
+
+const FILE_MISSING_MESSAGES: Record<string, string> = {
+  incorporation_document: "Please upload the incorporation documents.",
+  financial_report: "Please upload the financial report or business account statement.",
+  revenue_projection: "Please upload the revenue projection document.",
+};
+
+function validationResponse(errors: string[], status = 400) {
+  return NextResponse.json(
+    {
+      success: false,
+      ok: false,
+      message: errors.length > 1 ? "Please correct the highlighted fields." : errors[0],
+      error: errors[0],
+      errors,
+    },
+    { status }
+  );
+}
+
+function logDevelopmentValidation(formData: FormData, missingFields: string[]) {
+  if (process.env.NODE_ENV !== "development") return;
+
+  const receivedFiles = [
+    ...REQUIRED_FILES,
+    "optional_supporting_document",
+  ].map((name) => {
+    const files = formData
+      .getAll(name)
+      .filter((file): file is File => file instanceof File && file.size > 0);
+
+    return {
+      name,
+      files: files.map((file) => ({
+        filename: file.name,
+        size: file.size,
+        type: file.type || "unknown",
+      })),
+    };
+  });
+
+  console.log("Ebenezer Grant validation debug:", {
+    missingFields,
+    receivedFiles,
+    church_membership_confirmed: formData.has("church_membership_confirmed"),
+    declaration_accepted: formData.has("declaration_accepted"),
+  });
+}
+
 function field(formData: FormData, name: string) {
   return String(formData.get(name) ?? "").trim();
 }
@@ -45,9 +112,9 @@ function fileExtension(fileName: string) {
   return fileName.split(".").pop()?.toLowerCase() ?? "";
 }
 
-function validateFile(file: File | null, label: string, errors: string[]) {
+function validateFile(file: File | null, label: string, errors: string[], missingMessage: string) {
   if (!file || !file.name || file.size === 0) {
-    errors.push(`${label} is required.`);
+    errors.push(missingMessage);
     return;
   }
 
@@ -114,7 +181,9 @@ export async function POST(request: NextRequest) {
   if (isEbenezerGrantClosed()) {
     return NextResponse.json(
       {
+        success: false,
         ok: false,
+        message: "Applications for the Ebenezer Grant are now closed. Thank you for your interest.",
         error: "Applications for the Ebenezer Grant are now closed. Thank you for your interest.",
       },
       { status: 403 }
@@ -124,10 +193,12 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const errors: string[] = [];
+    const missingFields: string[] = [];
 
     for (const name of REQUIRED_FIELDS) {
       if (!field(formData, name)) {
-        errors.push(`${name.replaceAll("_", " ")} is required.`);
+        missingFields.push(name);
+        errors.push(`${FIELD_LABELS[name]} is required.`);
       }
     }
 
@@ -148,7 +219,12 @@ export async function POST(request: NextRequest) {
     }
 
     for (const name of REQUIRED_FILES) {
-      validateFile(getRequiredFile(formData, name), name.replaceAll("_", " "), errors);
+      validateFile(
+        getRequiredFile(formData, name),
+        FIELD_LABELS[name],
+        errors,
+        FILE_MISSING_MESSAGES[name]
+      );
     }
 
     const optionalFiles = formData
@@ -156,18 +232,27 @@ export async function POST(request: NextRequest) {
       .filter((file): file is File => file instanceof File && file.size > 0);
 
     optionalFiles.forEach((file, index) => {
-      validateFile(file, `optional supporting document ${index + 1}`, errors);
+      validateFile(
+        file,
+        `optional supporting document ${index + 1}`,
+        errors,
+        `Optional supporting document ${index + 1} is empty.`
+      );
     });
 
+    logDevelopmentValidation(formData, missingFields);
+
     if (errors.length > 0) {
-      return NextResponse.json({ ok: false, error: errors[0], errors }, { status: 400 });
+      return validationResponse(errors);
     }
 
     const registrationNumber = field(formData, "business_registration_number");
     if (await businessRegistrationExists(registrationNumber)) {
       return NextResponse.json(
         {
+          success: false,
           ok: false,
+          message: "An application has already been submitted for this business registration number.",
           error: "An application has already been submitted for this business registration number.",
         },
         { status: 409 }
@@ -237,6 +322,7 @@ export async function POST(request: NextRequest) {
     await sendOptionalNotification(application);
 
     return NextResponse.json({
+      success: true,
       ok: true,
       referenceNumber: application.reference_number,
       submittedAt: application.submitted_at,
@@ -245,7 +331,12 @@ export async function POST(request: NextRequest) {
     console.error("Ebenezer Grant submission failed:", error);
     return NextResponse.json(
       {
+        success: false,
         ok: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "We could not submit your application. Please try again.",
         error:
           error instanceof Error
             ? error.message
