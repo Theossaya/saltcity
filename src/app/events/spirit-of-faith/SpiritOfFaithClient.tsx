@@ -357,20 +357,32 @@ export default function SpiritOfFaithClient() {
 
       {/* ============================================ HERO (banner artwork) */}
       <section ref={heroRef as React.Ref<HTMLElement>} className="relative overflow-hidden bg-[#FAF8F2]">
-        {/* the artwork — full-bleed, whole banner */}
-        <div
-          className="relative aspect-[1280/526] w-full overflow-hidden bg-[#0B1526]"
-          style={{ opacity: loaded ? 1 : 0, transition: "opacity 900ms ease" }}
-        >
-          <Image
-            src="/images/spirit-of-faith/sof-banner.jpg"
-            alt="The Spirit of Faith — June 26–28. The Centre of Discipleship, 20 Okumagba Avenue, Warri."
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
-            style={{ transform: loaded ? "scale(1)" : "scale(1.05)" }}
-          />
+        {/* the artwork — full-bleed; portrait on mobile, wide banner on desktop */}
+        <div style={{ opacity: loaded ? 1 : 0, transition: "opacity 900ms ease" }}>
+          {/* mobile — portrait poster */}
+          <div className="relative aspect-[750/1334] w-full overflow-hidden bg-[#0B1526] md:hidden">
+            <Image
+              src="/images/spirit-of-faith/sof-poster.jpg"
+              alt="The Spirit of Faith — June 26–28. The Centre of Discipleship, 20 Okumagba Avenue, Warri."
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
+              style={{ transform: loaded ? "scale(1)" : "scale(1.05)" }}
+            />
+          </div>
+          {/* desktop — wide web banner */}
+          <div className="relative hidden aspect-[5/1] w-full overflow-hidden bg-[#0B1526] md:block">
+            <Image
+              src="/images/spirit-of-faith/sof-banner.jpg"
+              alt="The Spirit of Faith — June 26–28. The Centre of Discipleship, 20 Okumagba Avenue, Warri."
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
+              style={{ transform: loaded ? "scale(1)" : "scale(1.05)" }}
+            />
+          </div>
         </div>
 
         {/* action bar — countdown + register */}
