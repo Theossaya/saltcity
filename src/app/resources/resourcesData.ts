@@ -32,6 +32,24 @@ export const RESOURCE_CATEGORIES: ResourceCategory[] = [
         kind: "pdf",
         badge: "Form",
       },
+      {
+        id: "talking-stage-questionnaire",
+        title: "Talking Stage Questionnaire",
+        description: "Comprehensive Workbook for Christian Talking Stage.",
+        fileSize: "PDF",
+        href: "/downloads/talking_stage_questionnaire.pdf",
+        kind: "pdf",
+        badge: "Workbook",
+      },
+      {
+        id: "marry-your-tribe",
+        title: "Marry Your Tribe Worksheet",
+        description: "A comprehensive worksheet for 'Must Haves' and 'Cannot Haves' in Christian Courtship.",
+        fileSize: "PDF",
+        href: "/downloads/marry-your-tribe.pdf",
+        kind: "pdf",
+        badge: "Workbook",
+      },
     ],
   },
 
@@ -143,7 +161,7 @@ export const RESOURCE_CATEGORIES: ResourceCategory[] = [
         title: "How to Study Your Bible",
         description: "A simple guide to studying Scripture with clarity and structure.",
         fileSize: "PDF",
-        href: "/downloads/how-to-study-your-bible.pdf",
+        href: "/downloads/how-to-study-bible.pdf",
         cover: "/downloads/covers/how-to-study-bible.png", // add if you have it
         kind: "pdf",
         badge: "Study Guide",
