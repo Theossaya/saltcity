@@ -11,7 +11,9 @@ import Container from "@/components/ui/Container";
  */
 const EVENT_START = new Date("2026-08-18T17:00:00+01:00");
 const GOLD = "#E0B25C";
-const POSTER = "/images/fathers-blessing/poster.jpg";
+const POSTER = "/images/fathers-blessing/fathers-blessing.jpeg";
+const POSTER_W = 618;
+const POSTER_H = 1080;
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=20+Okumagba+Avenue%2C+Warri";
 
@@ -99,9 +101,9 @@ function Lightbox({ open, onClose }: { open: boolean; onClose: () => void }) {
         <Image
           src={POSTER}
           alt="A Father's Blessing flyer"
-          width={1600}
-          height={1599}
-          className="h-auto max-h-[86svh] w-full rounded-2xl object-contain"
+          width={POSTER_W}
+          height={POSTER_H}
+          className="mx-auto h-auto max-h-[86svh] w-auto rounded-2xl object-contain"
         />
         <button
           onClick={onClose}
@@ -149,7 +151,7 @@ export default function FathersBlessingHero() {
       </div>
 
       <Container className="relative">
-        <div className="grid min-h-[100svh] items-center gap-12 py-28 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-32">
+        <div className="grid min-h-[100svh] items-center gap-10 py-28 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
           {/* announcement */}
           <div>
             <div
@@ -170,9 +172,9 @@ export default function FathersBlessingHero() {
 
             <div className="mt-7 space-y-1.5 text-lg" style={step(2)}>
               <p className="font-semibold text-white/90">
-                Ministering: Tony Rapu
+                Ministering: Apst. Tony Rapu
                 <span className="mx-2 text-white/25">·</span>
-                Host: Tobore David
+                Host: Pst. Tobore David
               </p>
               <p className="text-white/65">
                 The Centre of Discipleship · 20 Okumagba Avenue, Warri
@@ -207,7 +209,9 @@ export default function FathersBlessingHero() {
           <button
             onClick={() => setFlyer(true)}
             aria-label="View the A Father's Blessing flyer"
-            className="group relative mx-auto w-full max-w-[400px] lg:max-w-none"
+            // width is capped by viewport height too, so the tall flyer never
+            // overflows on short screens (aspect 618:1080 ≈ 0.572)
+            className="group relative mx-auto w-full max-w-[285px] sm:max-w-[310px] lg:max-w-[min(340px,38svh)]"
             style={step(2)}
           >
             <span
@@ -218,9 +222,9 @@ export default function FathersBlessingHero() {
               <Image
                 src={POSTER}
                 alt="A Father's Blessing — Tuesday, August 18, 2026, 5pm at 20 Okumagba Avenue, Warri"
-                width={1600}
-                height={1599}
-                sizes="(max-width: 1024px) 90vw, 520px"
+                width={POSTER_W}
+                height={POSTER_H}
+                sizes="(max-width: 1024px) 90vw, 340px"
                 className="h-auto w-full transition-transform duration-[1200ms] group-hover:scale-[1.03]"
               />
             </span>
