@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
  * Palette: cream #FBF7EF · ink #241B10 · gold #9A6A1C
  */
 const ACCENT = "#9A6A1C";
-const EVENT_START = new Date("2026-08-19T17:00:00+01:00");
+const EVENT_START = new Date("2026-08-18T17:00:00+01:00");
 
 type Status = "idle" | "submitting" | "done" | "error";
 
@@ -118,7 +118,7 @@ export default function FathersBlessingClient() {
             <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-[0_24px_70px_rgba(36,27,16,0.18)]">
               <Image
                 src="/images/fathers-blessing/poster.jpg"
-                alt="A Father's Blessing — Wednesday, August 19, 2026, 5pm, 20 Okumagba Avenue, Warri. Host: Tobore David. Ministering: Tony Rapu."
+                alt="A Father's Blessing — Tuesday, August 18, 2026, 5pm, 20 Okumagba Avenue, Warri. Host: Tobore David. Ministering: Tony Rapu."
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 560px"
@@ -146,7 +146,7 @@ export default function FathersBlessingClient() {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-              <span className="font-bold">Wednesday, August 19, 2026 · 5pm</span>
+              <span className="font-bold">Tuesday, August 18, 2026 · 5pm</span>
               <span className="text-[#241B10]/25">·</span>
               <span className="text-[#241B10]/70">20 Okumagba Avenue, Warri</span>
             </div>
