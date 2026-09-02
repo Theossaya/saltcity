@@ -1,9 +1,18 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import FathersBlessingClient from "./FathersBlessingClient";
 
-// TEMPORARY: registration is closed (the event is here), and the homepage now
-// carries the full announcement. Old shared links land there instead of on a
-// dead form. To restore the registration page after the event:
-//   git checkout <commit-before-this-change> -- src/app/fathers-blessing/page.tsx
-export default function FathersBlessingRedirect() {
-  redirect("/");
+export const metadata: Metadata = {
+  title: "A Father's Blessing | SaltCity",
+  description:
+    "A Father's Blessing — an evening of blessing and impartation. Tuesday, August 18, 2026, 5pm at 20 Okumagba Avenue, Warri. Register to attend.",
+  openGraph: {
+    title: "A Father's Blessing",
+    description:
+      "An evening of blessing and impartation. Tuesday, August 18, 2026, 5pm · 20 Okumagba Avenue, Warri.",
+    images: ["/images/fathers-blessing/poster.jpg"],
+  },
+};
+
+export default function FathersBlessingPage() {
+  return <FathersBlessingClient />;
 }
